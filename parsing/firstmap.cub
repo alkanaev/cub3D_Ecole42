@@ -1,12 +1,12 @@
 R 640 480
-NO ./blabla1.xpm
-WE ./blabla2.pm
-SO ./blabla3.xpm
-EA ./blabla4.xpm
+NO ./blabla1.x
+WE ./blabla2.xpm
+SO ./blabla3.xp
+EA ./blabla4.xpmb
 
 S ./blabla5.xpm
-F 0,255,255
-C 0,255,255
+F 
+C 0,255,256
 
 11111111111111111
 11011100111101111

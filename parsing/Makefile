@@ -4,7 +4,8 @@ HEADER = cub3d.h
 
 SRCS =	parsing.c \
 		check_cipher.c \
-		parsing_convert.c
+		parsing_convert.c \
+		errors.c
 
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 

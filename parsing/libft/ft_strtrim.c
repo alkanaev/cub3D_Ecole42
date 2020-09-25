@@ -11,7 +11,7 @@ static int	ft_lenght(char *str, char *sep)
 	if (str[i] == '\0')
 		return (-1);
 	len = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		i++;
 		len++;

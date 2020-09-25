@@ -27,7 +27,7 @@ struct  s_col_name
 #include "mlx_rgb.c"
 
 
-#define	RETURN	{ if (colors) free(colors); if (tab) free(tab); \
+#define	RETURN	{ if (colours) free(colours); if (tab) free(tab); \
 		  if (colors_direct) free(colors_direct); \
                   if (img) mlx_destroy_image(xvar, img);   \
                   return ((void *)0); }
@@ -243,10 +243,10 @@ void	*mlx_int_recupe_xpm(void *xvar,void *info,int info_size,char *(*f)(), int *
   int	i;
   int	j;
   void	*img;
-  t_xpm_col	*colors;
+  t_xpm_col	*colours;
   int		*colors_direct;
 
-  colors = 0;
+  colours = 0;
   colors_direct = 0;
   img = 0;
   tab = 0;
@@ -267,7 +267,7 @@ void	*mlx_int_recupe_xpm(void *xvar,void *info,int info_size,char *(*f)(), int *
 	RETURN;
     }
   else
-    if (!(colors = malloc(nc*sizeof(*colors))))
+    if (!(colours = malloc(nc*sizeof(*colours))))
       RETURN;
 
   clip_data = 0;
@@ -289,8 +289,8 @@ void	*mlx_int_recupe_xpm(void *xvar,void *info,int info_size,char *(*f)(), int *
 	colors_direct[mlx_int_get_col_name(line,cpp)] = rgb_col;
       else
 	{
-	  colors[i].name = mlx_int_get_col_name(line,cpp);
-	  colors[i].col = rgb_col;
+	  colours[i].name = mlx_int_get_col_name(line,cpp);
+	  colours[i].col = rgb_col;
 	}
       free(tab);
       tab = 0;
@@ -317,9 +317,9 @@ void	*mlx_int_recupe_xpm(void *xvar,void *info,int info_size,char *(*f)(), int *
 	    {
 	      j = nc;
 	      while (j--)
-		if (colors[j].name==col_name)
+		if (colours[j].name==col_name)
 		  {
-		    col = colors[j].col;
+		    col = colours[j].col;
 		    j = 0;
 		  }
 	    }
@@ -330,8 +330,8 @@ void	*mlx_int_recupe_xpm(void *xvar,void *info,int info_size,char *(*f)(), int *
 	}
       data += sl; //img->width*4;
     }
-  if (colors)
-    free(colors);
+  if (colours)
+    free(colours);
   if (colors_direct)
     free(colors_direct);
   return (img);

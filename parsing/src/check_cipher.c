@@ -1,10 +1,21 @@
 #include "../cub3d.h"
 
+void	texture_reader2(char *str, char *texture, int i, int j)
+{
+	while (str[j] != '\0')
+	{
+		texture[i] = str[j];
+		i++;
+		j++;
+	}
+	feedback(str, " - texture ok\n");
+	texture[i] = '\0';
+}
+
 char	*texture_reader(char *str)
 {
 	int i;
 	int j;
-	int k;
 	char *texture;
 
 	i = 0;
@@ -14,43 +25,19 @@ char	*texture_reader(char *str)
 		j++;
 		if (str[j] == '\0')
 		{
-			printf("%s", str);
-			printf(" - mistake in file\n");
+			feedback(str, " - mistake in file\n");
 			return (NULL);
 		}
 	}
-	k = j+1;
-	/*printf("___________________________________________\n");
-	printf("%c\n", str[j]);
-	printf("%c\n", str[k]);
-	printf("___________________________________________\n");*/
-	while (str[k] != '.')
+	if (str[ft_strlen(str)-4] != '.' && str[ft_strlen(str)-3] != 'x' 
+		&& str[ft_strlen(str)-2] != 'p' && str[ft_strlen(str)-1] != 'm')
 	{
-		k++;
-		if (str[k] == '.' && str[k + 1] != 'x')
-		{
-			printf("%s", str);
-			printf(" -  bad format\n");
-			return (NULL);
-		}
-		if (str[j] == '\0')
-		{
-			printf("%s", str);
-			printf(" - mistake in file\n");
-			return (NULL);
-		}
+		feedback(str, " -  bad format\n");
+		return (NULL);
 	}
 	if (!(texture = (malloc(sizeof(char) * (len_mod(str) + 1)))))
 		return (NULL);
-	while (str[j] != '\0')
-	{
-		texture[i] = str[j];
-		i++;
-		j++;
-	}
-	printf("%s", str);
-	printf(" - texture ok\n");
-	texture[i] = '\0';
+	texture_reader2(str, texture, i, j);
 	return (texture);
 }
 
@@ -72,7 +59,7 @@ void	chipher_sides_valid(char *str, t_pars *pars)
 
 void floor_check(char *str, t_pars *pars, int k, int i)
 {
-	while (str[i] != '\0')
+	while (str[i])
 			{
 				if (str[i] == ' ')
 					k++;
@@ -80,19 +67,17 @@ void floor_check(char *str, t_pars *pars, int k, int i)
 			}
 			if (k != 2)
 			{
-				printf("%s", str);
-				printf(" - Resol mistake\n");
+				feedback(str, " -  Resol mistake\n");
 			}
 			else
 			{
 				pars->resol1 = rosol_converting(str, pars);
 				pars->resol2 = rosol_converting(str, pars);
-				printf("%s", str);
-				printf(" - Resol ok\n");
+				feedback(str, " -  Resol ok\n");
 			}
 }
 
-void	chipher_fc_valid(char *str, t_pars *pars)
+void	chipher_rfc_valid(char *str, t_pars *pars)
 {
 	int			i;
 	int			k;
@@ -100,7 +85,7 @@ void	chipher_fc_valid(char *str, t_pars *pars)
 	k = 0;
 	i = 0;
 	pars->el = 1;
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		if (str[i] == 'R')
 		{
@@ -109,14 +94,14 @@ void	chipher_fc_valid(char *str, t_pars *pars)
 		else if (str[i] == 'F')
 		{
 			pars->F = f_c_converting(str, pars);
-			printf("%s", str);
-			printf(" - checked\n");
+			if (pars->F != 0)
+				feedback(str, " - floor's colours ok\n");
 		}
 		else if (str[i] == 'C')
 		{
 			pars->C = f_c_converting(str, pars);
-			printf("%s", str);
-			printf(" - checked\n");
+			if (pars->F != 0)
+				feedback(str, " - ceiling's colours ok\n");
 		}
 		i++;
 	}

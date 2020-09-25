@@ -22,7 +22,7 @@ char		*ft_subbuff(char *buff, int start, int len)
 	str = NULL;
 	str = ft_strjoin(str, buff);
 	i = 0;
-	while (str[i] != '\0' && i < len)
+	while (str[i] && i < len)
 	{
 		buff[i] = str[start];
 		i++;

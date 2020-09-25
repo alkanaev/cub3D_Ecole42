@@ -31,7 +31,7 @@ void	pars_cub(char *fichier)
 	while (ret != 0)
 	{
 		ret = get_next_line(fd, &str);
-		chipher_fc_valid(str, &pars);
+		chipher_rfc_valid(str, &pars);
 		chipher_sides_valid(str, &pars);
 		free(str);
 	}
@@ -43,21 +43,21 @@ int		check_format(char *str)
 {
 	int i;
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 		i++;
 	while (str[i] != '.')
 	{
 		i--;
 		if (i == 0)
 		{
-			printf("mistake");
+			feedback(str, " -  not a cub file\n");
 			return (0);
 		}
 	}
 	if (str[i + 1] == 'c' && str[i + 2] == 'u' && str[i + 3] == 'b')
 		pars_cub(str);
 	else
-		printf("mistake");
+		feedback(str, " -  not a cub file\n");
 	return (0);
 }
 
@@ -66,5 +66,5 @@ int		main(int argc, char **argv)
 	if (argc >= 2)
 		check_format(argv[1]);
 	else
-		printf("mistake");
+		ft_putstr("no file given");
 }
