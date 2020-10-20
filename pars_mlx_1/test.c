@@ -247,7 +247,6 @@ int check_edge_origin(t_all *all, int i)
             return (1);
         j++;
     }
-    printf("%d\n", up);
     if(up == 0)
         return (1);
     if(check_edge_end(all, i, up))

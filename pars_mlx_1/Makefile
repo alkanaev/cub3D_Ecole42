@@ -22,7 +22,7 @@ LIBFT = libft.a
 MLX_DIR = mlx
 MLX = libmlx.dylib
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 all:
 	$(MAKE) -C $(MLX_DIR)

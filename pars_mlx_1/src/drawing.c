@@ -1,18 +1,5 @@
 #include "../cub3d.h"
 
-/*int map_int [10] [10] = { // нужно обязательно найти потом макс. кол-во элементов массива
-    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-    { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-    { 1, 0, 0, 0, 0, 0, 0, 1, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
-};*/
-
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
     char    *dst;
@@ -52,21 +39,21 @@ void	draw_map(t_all *all)
                                   &all->data.endian);
 	all->map.y = 0;
 	//ВОТ ТУТ СРАВНИВАЕТСЯ С 10, ПОТОМУ ЧТО КАРТА РАЗМЕРОМ 10 НА 10 В ФАЙЛЕ CUB. НО ЭТО НЕ РАБОТАЕТ))
-	while (all->map.y/SCALE < 10 ) // нужна будет переменная под размер карты
+	while (all->map.y/SCALE < all->map.max_str) // нужна будет переменная под размер карты
 	{
 		all->map.x = 0;
-		while (all->map.x/SCALE < 10) // нужна будет переменная под размер карты
+		while (all->map.x/SCALE < all->map.max_str) // нужна будет переменная под размер карты
 		{
 			// И ТУТ ВМЕСТО МАССИВА ИНТОВ Я УКАЗЫВАЮ САМУ СПАРШЕННУЮ КАРТУ И СРАВНИВАЮ ЕЁ УЖЕ С ЧАРОМ 1Б А НЕ С ИНТОМ
 			// ТО ЖЕ САМОЕ В ФАЙЛК CALCULATION
 			// ПОКАЗЫВАЮ, ТАК КАК ЗАБЫЛА ВСЁ ЭТО В ВИДЕО ДОБАВИТЬ
-			if (all->map.map[all->map.y / SCALE][all->map.x / SCALE] == '1')
-			{
+			//if (all->map.map[all->map.y / SCALE][all->map.x / SCALE] == '1')
+		//	{
 				my_mlx_pixel_put(&all->data, all->map.x, all->map.y, 0x000000FF);
-			}
+		//	}
 			// else if (map_int[all->map.y / SCALE][all->map.x / SCALE] == 0)
-			else
-				my_mlx_pixel_put(&all->data, all->map.x, all->map.y, 0x00000000);
+			//else
+				//my_mlx_pixel_put(&all->data, all->map.x, all->map.y, 0x00000000);
 			all->map.x++;
 
 		}

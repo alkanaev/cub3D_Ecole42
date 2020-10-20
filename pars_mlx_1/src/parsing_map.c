@@ -1,20 +1,8 @@
 #include "../cub3d.h"
 
 
-t_map	*create_map_struct()
+void	initialization_of_structures(t_map *map)
 {
-	t_map	*map;
-
-	if (!(map = (t_map*)malloc(sizeof(t_map))))
-		return (NULL);
-	return (map);
-}
-
-t_map	*initialization_of_structures()
-{
-	t_map	*map;
-
-	map = create_map_struct();
 	map->start_map = -1;
 	map->end_map = -1;
 	map->max_str = -1;
@@ -24,7 +12,6 @@ t_map	*initialization_of_structures()
 	//исправила map->direction на ноль так как пока координаты задаются мануально в инит файле:
 	map->map = NULL;
 	map->error = -1;
-	return (map);
 }
 
 
@@ -194,7 +181,7 @@ int		ft_parser(t_map *map, char *line, int num_str)
 
 int		parser_map2(char *fichier, t_map *map, char *line, int i)// (char *argv, int i, t_map *map, char *line) // reading_map
 {
-	char	**card;
+	// char	**card;
 	int		fd;
 
 	fd = open(fichier, O_RDONLY);
@@ -204,34 +191,33 @@ int		parser_map2(char *fichier, t_map *map, char *line, int i)// (char *argv, in
 		i++;
 	}
 	map->height_map = map->end_map - map->start_map + 1;
-	card = (char **)malloc(sizeof(char *) * (map->height_map + 1));
+	map->map = (char **)malloc(sizeof(char *) * (map->height_map + 1));
 	i = 0;
 	while (i < map->height_map)
 	{
-		card[i] = (char *)malloc(sizeof(char) * map->max_str);
-		get_next_line(fd, &line);
-		card[i] = line;
+		(map->map)[i] = (char *)malloc(sizeof(char) * map->max_str);
+		get_next_line(fd, &(map->map)[i]);
+		// card[i] = line;
 		i++;
 	}
-	card[i] = NULL;
-	map->map = card;
+	(map->map)[i] = NULL;
+	// map->map = card;
 	if (validator_map(map) || map->direction == -1)
 		return (1);
 	return (0);
 }
 
-int		parser_map(char *fichier)//pars_cub
+int		parser_map(char *fichier, t_map *map)//pars_cub
 {
 	int		r;
 	int i;
 	int			fd;
 	char	*line;
-	t_map	*map;
 	//char		*str = NULL;
 
 	i = 0;
 	line = NULL;
-	map = initialization_of_structures();
+	//map = initialization_of_structures();
 	fd = open(fichier, O_RDONLY);
 	while ((r = get_next_line(fd, &line)) > 0)
 	{
@@ -246,11 +232,16 @@ int		parser_map(char *fichier)//pars_cub
 	close(fd);
 	if (parser_map2(fichier, map, line, 0))
 		feedback(fichier, " -  parser_map_gives_mistake\n\n\n\n");
+	// printf("%c\n", map->map[2][0]);
+	// printf("%c\n", map->map[2][1]);
+	// printf("%c\n", map->map[2][2]);
+	// printf("%c\n", map->map[2][3]);
+	// printf("%c\n", map->map[2][4]);
 	/*checking what was parsed into map // 
 	int k = 0;
 	while (map->map[k])
 	{
-		printf("%s\n", map->map[k]);
+		printf("%c\n", map->map[k][8]);
 		k++;
 	}*/
 	return (0);

@@ -65,17 +65,23 @@ int     render_next_frame(t_all *all)
 //{
 int		main(int argc, char **argv)
 {
-	t_all	all;
-	
+	t_all all;
+	initialization_of_structures(&all.map);
 	if (argc >= 2)
-		check_format(argv[1]);
+	{
+		check_format(argv[1], &(all.map));	
+		printf("%c\n", all.map.map[2][0]);
+	printf("%c\n", all.map.map[2][1]);
+	printf("%c\n", all.map.map[2][2]);
+	printf("%c\n", all.map.map[2][3]);
+	printf("%c\n", all.map.map[2][4]);
+	}
 	else
 		ft_putstr("no file given");
 	//parser_map(argv[1]);
 	///check//////////
 	//while (*all.map.map) printf("\n\nTHISSSSSSSSSSSSSSSSSSSSSSS\n%s\n", *all.map.map++);
 	//------------------------------------------------------------------------------------
-
 	// all.make_map = init_int_map(&all.make_map);
     all.data.mlx = mlx_init();
     all.data.mlx_win = mlx_new_window(all.data.mlx, S_WIDTH, S_HEIGHT, "CUB_3D!");

@@ -123,7 +123,7 @@ typedef struct  s_all
 
 
 
-int			check_format(char *str);
+int		check_format(char *str, t_map *map);
 //void		pars_cub(char *fichier);
 //int			reading_map(char *fichier, t_map *map);
 int			rosol_converting(const char *str, t_map *map);
@@ -144,7 +144,7 @@ int			f_c_converting(char *str, t_map *map);
 int			ft_isnumber(char *str);
 
 
-int parser_map(char *fichier);
+int parser_map(char *fichier, t_map *map);
 int		check_cell(t_map *map, char c, int i, size_t j);
 int check_edge_end(t_map *map, int i, int up);
 int check_edge_origin(t_map *map, int i);
@@ -155,7 +155,6 @@ void	ft_pass_space(char *line, int *i);
 int		ft_parser_map(t_map *map, char *line, int num_str);
 int		ft_parser(t_map *map, char *line, int num_str);
 int		parser_map2(char *fichier, t_map *map, char *line, int i);
-int		parser_map(char *fichier);
 
 
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -174,6 +173,7 @@ void vertical_hit(t_all *all);
 void shortest_distance(t_all *all, int i);
 void fix_angle(float *angle);
 void calculate_wall(t_all *all, int i);
+void	initialization_of_structures(t_map *map);
 
 
 #endif

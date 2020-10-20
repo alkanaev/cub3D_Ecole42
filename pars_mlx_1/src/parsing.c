@@ -39,7 +39,7 @@ void	pars_cub(char *fichier)
 	reading_map(fichier, &map);
 }*/
 
-int		check_format(char *str)
+int		check_format(char *str, t_map *map)
 {
 	int i;
 	i = 0;
@@ -55,10 +55,15 @@ int		check_format(char *str)
 		}
 	}
 	if (str[i + 1] == 'c' && str[i + 2] == 'u' && str[i + 3] == 'b')
-		parser_map(str);
+	{
+		parser_map(str, map);
+		printf("%s\n", str);
+	}
+		
 	else
 		feedback(str, " -  not a cub file\n");
 	return (0);
+	
 }
 
 /*int		main(int argc, char **argv)

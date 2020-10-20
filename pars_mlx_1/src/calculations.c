@@ -1,18 +1,5 @@
 #include "../cub3d.h"
 
-/*int map_int_1 [10] [10] = { // нужно обязательно найти потом макс. кол-во элементов массива
-    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-    { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-    { 1, 0, 0, 0, 0, 0, 0, 1, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
-};*/
-
 void 	horizontal_cross(t_all *all) // find the coordinates of the first horizontal cub cross + the delta
 {
 	if (all->player.fov_start > 0 && all->player.fov_start < M_PI) // the ray looking up
@@ -59,7 +46,12 @@ static int is_out_of_map(float x, float y) // checks if the coordinate is outsid
 
 static int is_wall(float x, float y, t_all *all) // checks if the coordinate hits the wall
 {
-	if (all->map.map[(int)y / SCALE][(int)x / SCALE] != '1')
+	int i;
+	int j;
+
+	i = (int)x / SCALE;
+	j = (int)y / SCALE;
+	if (all->map.map[j][i] != '1')
 		return (0);
 	else
 		return (1);	
@@ -81,6 +73,7 @@ void horizontal_hit(t_all *all) // find the horizontal coordinates when it hits 
 void vertical_hit(t_all *all) // find the vertical coordinates when it hits the wall
 {
 	while (!is_out_of_map(all->cross.vx, all->cross.vy) && !is_wall(all->cross.vx, all->cross.vy, all))
+
 	{
 		all->cross.vx += all->cross.v_dx;
 	 	all->cross.vy += all->cross.v_dy;
