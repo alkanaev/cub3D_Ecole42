@@ -8,21 +8,25 @@ void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
-void            draw_pixels_from_img(t_all *all, int width)
+void            draw_wall(t_all *all, int width)
 {
     char    *dst;
 	unsigned int color;
+	t_texture_data texture = all->texture[all->cross.hit_side];
+
 
 	int y_start = all->player.ceiling[width];
-	//int y = all->player.ceiling[width];
 	int y;
 	while (y_start < all->player.ceiling[width] + all->player.slice_height[width])
 	{
-    	y = (int)((y_start - all->player.ceiling[width]) / all->player.slice_height[width] * (float)all->texture.img_height);
-		int x_texture = all->cross.offset[width] / SCALE * all->texture.img_width;
-		dst = all->texture.addr + (y * all->texture.line_length + x_texture * (all->texture.bits_per_pixel / 8));
-		color = *(unsigned int*)dst;
-		my_mlx_pixel_put(&all->data, width, y_start, color);
+		if (y_start < S_HEIGHT && y_start > 0)
+		{
+			y = (int)((y_start - all->player.ceiling[width]) / all->player.slice_height[width] * (float)texture.img_height);
+			int x_texture = all->cross.offset[width] / SCALE * texture.img_width;
+			dst = texture.addr + (y * texture.line_length + x_texture * (texture.bits_per_pixel / 8));
+			color = *(unsigned int*)dst;
+			my_mlx_pixel_put(&all->data, width, y_start, color);
+		}
 		y_start++;
 	}
 }
@@ -31,37 +35,32 @@ void	draw_player(t_all *all)
 	my_mlx_pixel_put(&all->data, all->player.x, all->player.y, 0x00FF0000);
 }
 
-// НЕ МОГУ ГОВОРИТЬ ))))
-void	draw_map(t_all *all)
-{
-	all->data.img = mlx_new_image(all->data.mlx, 1200, 800);
-	all->data.addr = mlx_get_data_addr(all->data.img, &all->data.bits_per_pixel, &all->data.line_length,
-                                  &all->data.endian);
-	all->map.y = 0;
-	//ВОТ ТУТ СРАВНИВАЕТСЯ С 10, ПОТОМУ ЧТО КАРТА РАЗМЕРОМ 10 НА 10 В ФАЙЛЕ CUB. НО ЭТО НЕ РАБОТАЕТ))
-	while (all->map.y/SCALE < all->map.max_str) // нужна будет переменная под размер карты
-	{
-		all->map.x = 0;
-		while (all->map.x/SCALE < all->map.max_str) // нужна будет переменная под размер карты
-		{
-			// И ТУТ ВМЕСТО МАССИВА ИНТОВ Я УКАЗЫВАЮ САМУ СПАРШЕННУЮ КАРТУ И СРАВНИВАЮ ЕЁ УЖЕ С ЧАРОМ 1Б А НЕ С ИНТОМ
-			// ТО ЖЕ САМОЕ В ФАЙЛК CALCULATION
-			// ПОКАЗЫВАЮ, ТАК КАК ЗАБЫЛА ВСЁ ЭТО В ВИДЕО ДОБАВИТЬ
-			//if (all->map.map[all->map.y / SCALE][all->map.x / SCALE] == '1')
-		//	{
-				my_mlx_pixel_put(&all->data, all->map.x, all->map.y, 0x000000FF);
-		//	}
-			// else if (map_int[all->map.y / SCALE][all->map.x / SCALE] == 0)
-			//else
-				//my_mlx_pixel_put(&all->data, all->map.x, all->map.y, 0x00000000);
-			all->map.x++;
 
-		}
-		all->map.y++;
-	}
-}
+// void	draw_map(t_all *all)
+// {
+// 	all->data.img = mlx_new_image(all->data.mlx, 1200, 800);
+// 	all->data.addr = mlx_get_data_addr(all->data.img, &all->data.bits_per_pixel, &all->data.line_length,
+//                                   &all->data.endian);
+// 	all->map.y = 0;
+// 	while (all->map.y/SCALE < 10 ) // нужна будет переменная под размер карты
+// 	{
+// 		all->map.x = 0;
+// 		while (all->map.x/SCALE < 10) // нужна будет переменная под размер карты
+// 		{
+// 			if (map_int[all->map.y / SCALE][all->map.x / SCALE] == 1)
+// 			{
+// 				my_mlx_pixel_put(&all->data, all->map.x, all->map.y, 0x000000FF);
+// 			}
+// 			else if (map_int[all->map.y / SCALE][all->map.x / SCALE] == 0)
+// 				my_mlx_pixel_put(&all->data, all->map.x, all->map.y, 0x00000000);
+// 			all->map.x++;
 
-static void draw_ceiling(t_all *all, int width)
+// 		}
+// 		all->map.y++;
+// 	}
+// }
+
+void draw_ceiling(t_all *all, int width)
 {
 	int height = 0;
 	while (height < all->player.ceiling[width])
@@ -70,17 +69,7 @@ static void draw_ceiling(t_all *all, int width)
 	}
 }
 
-// static void draw_wall(t_all *all, int width)
-// {
-// 	int y = all->player.ceiling[width];
-// 	int ceiling_y = all->player.ceiling[width];
-// 	while (y < ceiling_y + all->player.slice_height[width])
-// 	{
-// 		unsigned int pixel = draw_pixels_from_img(all, width, y);
-// 		my_mlx_pixel_put(&all->data, width, y++, pixel);
-// 	}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-// }
-static void draw_floor(t_all *all, int width)
+void draw_floor(t_all *all, int width)
 {
 	int height = all->player.slice_height[width] + all->player.ceiling[width]; // координата начала для отрисовки пола
 	while (height < S_HEIGHT)
@@ -111,18 +100,5 @@ void	draw_ray(t_all *all)
         y += y_increment;
         my_mlx_pixel_put(&all->data, round(x), round(y), 0xFFA500);
         i++;
-	}
-}
-
-void	draw_screen(t_all *all)
-{
-	int width = 0;
-	while (width < S_WIDTH)
-	{
-		draw_ceiling(all, width);
-		draw_pixels_from_img(all, width);
-		//draw_wall(all, width);
-		draw_floor(all, width);
-		width++;
 	}
 }

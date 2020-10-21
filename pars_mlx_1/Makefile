@@ -11,6 +11,7 @@ SRCS =	parsing.c \
 		drawing.c \
 		calculations.c \
 		player_move.c \
+		raycasting.c \
 		main.c
 
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
