@@ -281,6 +281,7 @@ int		parser_map(char *fichier, t_map *map)//pars_cub
 		line = NULL;
 	}
 	printf("%d\n", map->maxsize);
+	printf("%d\n", map->lines_cnt);
 	map->end_map = i;
 	close(fd);
 	if (parser_map2(fichier, map, line, 0))

@@ -36,9 +36,10 @@ void	vertical_cross(t_all *all) // find the coordinates of the first vertical cu
 	}
 }
 
-static int is_out_of_map(float x, float y) // checks if the coordinate is outside of the map
+static int is_out_of_map(float x, float y, t_all *all) // checks if the coordinate is outside of the map
 {
-	if ((x > 0 && x < MAX) && (y > 0 && y < MAX))
+	
+	if ((x > 0 && x < (all->map.maxsize * SCALE)) && (y > 0 && y < (all->map.lines_cnt + 1) * SCALE))
 		return (0);
 	else 
 		return (1);
@@ -59,7 +60,7 @@ static int is_wall(float x, float y, t_all *all) // checks if the coordinate hit
 
 void horizontal_hit(t_all *all) // find the horizontal coordinates when it hits the wall
 {
-	while (!is_out_of_map(all->cross.hx, all->cross.hy) && !is_wall(all->cross.hx, all->cross.hy, all))
+	while (!is_out_of_map(all->cross.hx, all->cross.hy, all) && !is_wall(all->cross.hx, all->cross.hy, all))
 	{
 		all->cross.hx += all->cross.h_dx;
 	 	all->cross.hy += all->cross.h_dy;
@@ -72,7 +73,7 @@ void horizontal_hit(t_all *all) // find the horizontal coordinates when it hits 
 
 void vertical_hit(t_all *all) // find the vertical coordinates when it hits the wall
 {
-	while (!is_out_of_map(all->cross.vx, all->cross.vy) && !is_wall(all->cross.vx, all->cross.vy, all))
+	while (!is_out_of_map(all->cross.vx, all->cross.vy, all) && !is_wall(all->cross.vx, all->cross.vy, all))
 	{
 		all->cross.vx += all->cross.v_dx;
 	 	all->cross.vy += all->cross.v_dy;
