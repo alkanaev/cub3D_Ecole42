@@ -57,7 +57,7 @@ int		check_format(char *str, t_map *map)
 	if (str[i + 1] == 'c' && str[i + 2] == 'u' && str[i + 3] == 'b')
 	{
 		parser_map(str, map);
-		printf("%s\n", str);
+		//printf("%s\n", str);
 	}
 		
 	else

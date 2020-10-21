@@ -14,11 +14,11 @@ int		main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		check_format(argv[1], &(all.map));	
-		printf("%c\n", all.map.map[2][0]);
-	printf("%c\n", all.map.map[2][1]);
-	printf("%c\n", all.map.map[2][2]);
-	printf("%c\n", all.map.map[2][3]);
-	printf("%c\n", all.map.map[2][4]);
+		//printf("%c\n", all.map.map[2][0]);
+	//printf("%c\n", all.map.map[2][1]);
+	//printf("%c\n", all.map.map[2][2]);
+	//printf("%c\n", all.map.map[2][3]);
+	//printf("%c\n", all.map.map[2][4]);
 	}
 	else
 		ft_putstr("no file given");

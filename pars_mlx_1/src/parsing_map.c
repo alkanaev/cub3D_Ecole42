@@ -1,5 +1,56 @@
 #include "../cub3d.h"
 
+int		check_char(char *str, char sym)
+{
+	int i;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == sym)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int		map_search(char *str) //проверка что элеиент - часть карты
+{
+	int i;
+	i = 0;
+	if (check_char(str, '1') == 1)
+	{
+		while (str[i] != '\0')
+		{
+			if (str[i] != 'N' && str[i] != 'S' && str[i] != 'W' \
+				&& str[i] != 'E' && str[i] != '0' && str[i] != '1' \
+				&& str[i] != '2' && str[i] != ' ')
+				return (0);
+			i++;
+		}
+		return (1);
+	}
+	return (0);
+}
+
+void	cnt_map(char *str, t_map *map) // подсчет карты
+{
+	static int lines_cnt = 0;
+	static int maxsize = 0;
+	int k;
+
+	k = 0;
+	if (map_search(str) == 1)
+	{
+		if ((k = ft_strlen(str)) > maxsize)
+			maxsize = k;
+		lines_cnt = lines_cnt + 1;
+	}
+	map->lines_cnt = lines_cnt;
+	map->maxsize = maxsize;
+	//printf("%d\n", lines_cnt);
+	//printf("%d\n", map->maxsize);
+}
+
 
 void	initialization_of_structures(t_map *map)
 {
@@ -224,10 +275,12 @@ int		parser_map(char *fichier, t_map *map)//pars_cub
 		ft_parser(map, line, i);
 		//chipher_rfc_valid(str, map);
 		//chipher_sides_valid(str, map);
+		cnt_map(line, map);
 		i++;
 		free(line);
 		line = NULL;
 	}
+	printf("%d\n", map->maxsize);
 	map->end_map = i;
 	close(fd);
 	if (parser_map2(fichier, map, line, 0))

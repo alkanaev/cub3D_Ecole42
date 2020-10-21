@@ -38,7 +38,7 @@ typedef struct  s_map {
 	char	**map;
 	int		direction;
 	char	error;
-    //______________________________________
+
 	int			resol1;
 	int			resol2;
 	char		*NO;
@@ -50,6 +50,7 @@ typedef struct  s_map {
 	int			F;
 	int			C;
 	int			lines_cnt;
+    int         maxsize;
 	//char		**map;
 	int			red;
 	int			green;
