@@ -1,4 +1,4 @@
-R 640 480
+R 1200 800
 NO ./blabla1.x
 WE ./blabla2.xpm
 SO ./blabla3.xp

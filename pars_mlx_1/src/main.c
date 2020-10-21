@@ -19,6 +19,7 @@ int		main(int argc, char **argv)
 	//printf("%c\n", all.map.map[2][2]);
 	//printf("%c\n", all.map.map[2][3]);
 	//printf("%c\n", all.map.map[2][4]);
+	//get_positions(&all.map);
 	}
 	else
 		ft_putstr("no file given");
@@ -28,7 +29,7 @@ int		main(int argc, char **argv)
 	//------------------------------------------------------------------------------------
 	// all.make_map = init_int_map(&all.make_map);
     all.data.mlx = mlx_init();
-    all.data.mlx_win = mlx_new_window(all.data.mlx, S_WIDTH, S_HEIGHT, "CUB_3D!");
+    all.data.mlx_win = mlx_new_window(all.data.mlx, all.map.resol1, all.map.resol2, "CUB_3D!");
 
 	all.data.img = mlx_new_image(all.data.mlx, S_WIDTH, S_HEIGHT);
 	all.data.addr = mlx_get_data_addr(all.data.img, &all.data.bits_per_pixel, &all.data.line_length,

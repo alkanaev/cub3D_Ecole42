@@ -39,7 +39,7 @@ void	vertical_cross(t_all *all) // find the coordinates of the first vertical cu
 static int is_out_of_map(float x, float y, t_all *all) // checks if the coordinate is outside of the map
 {
 	
-	if ((x > 0 && x < (all->map.maxsize * SCALE)) && (y > 0 && y < (all->map.lines_cnt + 1) * SCALE))
+	if ((x > 0 && x < (all->map.max_rows * SCALE)) && (y > 0 && y < (all->map.max_columns + 1) * SCALE))
 		return (0);
 	else 
 		return (1);

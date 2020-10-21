@@ -34,19 +34,19 @@ int		map_search(char *str) //проверка что элеиент - часть
 
 void	cnt_map(char *str, t_map *map) // подсчет карты
 {
-	static int lines_cnt = 0;
-	static int maxsize = 0;
+	static int max_columns = 0;
+	static int max_rows = 0;
 	int k;
 
 	k = 0;
 	if (map_search(str) == 1)
 	{
-		if ((k = ft_strlen(str)) > maxsize)
-			maxsize = k;
-		lines_cnt = lines_cnt + 1;
+		if ((k = ft_strlen(str)) > max_rows)
+			max_rows = k;
+		max_columns = max_columns + 1;
 	}
-	map->lines_cnt = lines_cnt;
-	map->maxsize = maxsize;
+	map->max_columns = max_columns;
+	map->max_rows = max_rows;
 	//printf("%d\n", lines_cnt);
 	//printf("%d\n", map->maxsize);
 }
@@ -63,10 +63,12 @@ void	initialization_of_structures(t_map *map)
 	//исправила map->direction на ноль так как пока координаты задаются мануально в инит файле:
 	map->map = NULL;
 	map->error = -1;
+	map->resol1 = 1200;
+	map->resol2 = 800;
 }
 
 
-int		check_cell(t_map *map, char c, int i, size_t j)
+int		check_cell(t_map *map, char c, int i, size_t j, t_all *all)
 {
 	if (c != 'N' && c != 'S' && c != 'W' && c != 'E' && c != '0' && c != '2')
 	{
@@ -81,6 +83,11 @@ int		check_cell(t_map *map, char c, int i, size_t j)
 			return (1);
 		map->direction = 1;
 	}*/
+	if (c == 'N' || c == 'S' || c != 'W' || c != 'E')
+	{
+		all->player.x = j * SCALE + 32;
+		all->player.y = i * SCALE + 32;
+	}
 	if (map->map[i][j + 1] == ' ' || map->map[i][j - 1] == ' ' \
 		|| map->map[i + 1][j] == ' ' || map->map[i - 1][j] == ' ')
 		return (1);
@@ -268,7 +275,6 @@ int		parser_map(char *fichier, t_map *map)//pars_cub
 
 	i = 0;
 	line = NULL;
-	//map = initialization_of_structures();
 	fd = open(fichier, O_RDONLY);
 	while ((r = get_next_line(fd, &line)) > 0)
 	{
@@ -280,13 +286,12 @@ int		parser_map(char *fichier, t_map *map)//pars_cub
 		free(line);
 		line = NULL;
 	}
-	printf("%d\n", map->maxsize);
-	printf("%d\n", map->lines_cnt);
+	printf("%d\n", map->max_rows);
+	printf("%d\n", map->max_columns);
 	map->end_map = i;
 	close(fd);
 	if (parser_map2(fichier, map, line, 0))
 		feedback(fichier, " -  parser_map_gives_mistake\n\n\n\n");
-	// printf("%c\n", map->map[2][0]);
 	// printf("%c\n", map->map[2][1]);
 	// printf("%c\n", map->map[2][2]);
 	// printf("%c\n", map->map[2][3]);

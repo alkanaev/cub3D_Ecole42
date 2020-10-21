@@ -49,8 +49,8 @@ typedef struct  s_map {
 	int			el;
 	int			F;
 	int			C;
-	int			lines_cnt;
-    int         maxsize;
+	int			max_columns;
+    int         max_rows;
 	//char		**map;
 	int			red;
 	int			green;
@@ -162,7 +162,7 @@ typedef struct  s_all
 }               t_all;
 
 
-
+// void get_positions(t_map *map);
 int		check_format(char *str, t_map *map);
 //void		pars_cub(char *fichier);
 //int			reading_map(char *fichier, t_map *map);
@@ -185,7 +185,7 @@ int			ft_isnumber(char *str);
 
 
 int parser_map(char *fichier, t_map *map);
-int		check_cell(t_map *map, char c, int i, size_t j);
+int		check_cell(t_map *map, char c, int i, size_t j, t_all *all);
 int check_edge_end(t_map *map, int i, int up);
 int check_edge_origin(t_map *map, int i);
 int		validator_map_wtf30(t_map *map, int i, size_t j);
