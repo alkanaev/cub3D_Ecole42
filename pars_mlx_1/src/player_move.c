@@ -46,7 +46,7 @@ int control_player(int keycode, t_all *all)
 	// 	all->player.x = x_max;
 	// 	all->player.y = y_max;
 	// }
-	printf("%f\n", all->player.x);
-	printf("%f\n", all->player.y);
+	// printf("%f\n", all->player.x);
+	// printf("%f\n", all->player.y);
 	return (0);
 }

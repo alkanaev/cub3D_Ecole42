@@ -2,6 +2,7 @@
 
 void get_player_position(t_all *all)
 {
+    all->sprite_count = 0;
     size_t  max_y = all->map.max_columns + 1;
     //printf("%d\n", max_y);
     size_t  y = 0;
@@ -31,12 +32,14 @@ void get_player_position(t_all *all)
 void get_sprite_positions(t_all *all)
 {
     int i = 0;
+   // printf("%d\n\n",all->sprite_count);
     size_t  max_y = all->map.max_columns + 1;
     //printf("%d\n", max_y);
-    size_t  y = 0;
+    
     size_t  x;
     while (i < all->sprite_count)
     {
+        size_t  y = 0;
         while (y < max_y)
         {
             x = 0;
@@ -49,9 +52,11 @@ void get_sprite_positions(t_all *all)
                     all->sprite[i].y = y * SCALE + 32;
                     i++;
                 }
+                x++; 
             }
-            x++;     
+            y++;
         }
-        y++;
+        // i++;
     }
+    
 }
