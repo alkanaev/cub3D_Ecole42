@@ -74,3 +74,29 @@ int		check_format(char *str, t_map *map)
 		ft_putstr("no file given");
 	parser_map(argv[1], 0, 0);
 }*/
+
+// void get_positions(t_all *all)
+// {
+//     size_t  max_y = all->map.max_columns + 1;
+//     //printf("%d\n", max_y);
+//     size_t  y = 0;
+//     size_t  x;
+//     while (y < max_y)
+//     {
+//         x = 0;
+//         size_t  max_x = ft_strlen(all->map.map[y]);
+//         while (x < max_x)
+//         {
+//         //    printf("%c ", all->map.map[i][j]);
+//             if (all->map.map[y][x] == 'N')
+// 	        {
+// 		        all->player.x = x * SCALE + 32;
+// 		        all->player.y = y * SCALE + 32;
+// 		        printf("%f\n", all->player.x);
+// 		        printf("%f\n", all->player.y);
+// 	        }
+//             x++;     
+//         }
+//         y++;
+//     }
+// }

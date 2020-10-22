@@ -68,7 +68,7 @@ void	initialization_of_structures(t_map *map)
 }
 
 
-int		check_cell(t_map *map, char c, int i, size_t j, t_all *all)
+int		check_cell(t_map *map, char c, int i, size_t j)
 {
 	if (c != 'N' && c != 'S' && c != 'W' && c != 'E' && c != '0' && c != '2')
 	{
@@ -83,11 +83,6 @@ int		check_cell(t_map *map, char c, int i, size_t j, t_all *all)
 			return (1);
 		map->direction = 1;
 	}*/
-	if (c == 'N' || c == 'S' || c != 'W' || c != 'E')
-	{
-		all->player.x = j * SCALE + 32;
-		all->player.y = i * SCALE + 32;
-	}
 	if (map->map[i][j + 1] == ' ' || map->map[i][j - 1] == ' ' \
 		|| map->map[i + 1][j] == ' ' || map->map[i - 1][j] == ' ')
 		return (1);
@@ -292,7 +287,7 @@ int		parser_map(char *fichier, t_map *map)//pars_cub
 	close(fd);
 	if (parser_map2(fichier, map, line, 0))
 		feedback(fichier, " -  parser_map_gives_mistake\n\n\n\n");
-	// printf("%c\n", map->map[2][1]);
+	// printf("%c\n", map->map[0][13]);
 	// printf("%c\n", map->map[2][2]);
 	// printf("%c\n", map->map[2][3]);
 	// printf("%c\n", map->map[2][4]);

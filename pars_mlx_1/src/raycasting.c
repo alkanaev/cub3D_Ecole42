@@ -21,7 +21,7 @@ static void	cast_rays(t_all *all)
 		draw_ceiling(all, i);
 		draw_wall(all, i);
 		draw_floor(all, i);
-		//draw_all_sprites(all, i);
+		draw_all_sprites(all, i);
 		all->player.fov_start -= all->player.angle; // change the ray position
 		i++;
 	}

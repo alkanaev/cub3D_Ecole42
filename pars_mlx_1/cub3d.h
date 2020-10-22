@@ -80,7 +80,6 @@ typedef struct  s_sprite {
     float     v_offset;  // координаты верхнего левого угла спрайта на экране
     float     height;
     float     width;
-
 }               t_sprite;
 
 typedef enum    e_hit_side
@@ -157,12 +156,11 @@ typedef struct  s_all
     t_texture_data texture[4];
     t_sprite_img sprite_img;
     t_sprite    *sprite;
-    int			*sprite_order;
-	double		*sprite_distance;
+    int			sprite_count;
 }               t_all;
 
-
-// void get_positions(t_map *map);
+void get_sprite_positions(t_all *all);
+void get_player_position(t_all *all);
 int		check_format(char *str, t_map *map);
 //void		pars_cub(char *fichier);
 //int			reading_map(char *fichier, t_map *map);
@@ -180,12 +178,12 @@ int			linelen(char **str);
 int			check_colours_range(t_map map);
 char		**take_f_c_line(char *prep_line);
 char		**get_colours_codes(char *colours_line);
-int			f_c_converting(char *str, t_map *map);
+int			f_c_converting(char *str, t_map *map); 
 int			ft_isnumber(char *str);
 
 
 int parser_map(char *fichier, t_map *map);
-int		check_cell(t_map *map, char c, int i, size_t j, t_all *all);
+int		check_cell(t_map *map, char c, int i, size_t j);
 int check_edge_end(t_map *map, int i, int up);
 int check_edge_origin(t_map *map, int i);
 int		validator_map_wtf30(t_map *map, int i, size_t j);

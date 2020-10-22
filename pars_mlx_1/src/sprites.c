@@ -1,17 +1,17 @@
 #include "../cub3d.h"
 
-int map_int_2 [10] [10] = { // нужно обязательно найти потом макс. кол-во элементов массива
-    { 1, 1, 2, 1, 1, 1, 1, 1, 1, 1 },
-    { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-    { 1, 0, 0, 0, 0, 2, 0, 1, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 2, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 2, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
-};
+// int map_int_2 [10] [10] = { // нужно обязательно найти потом макс. кол-во элементов массива
+//     { 1, 1, 2, 1, 1, 1, 1, 1, 1, 1 },
+//     { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+//     { 1, 0, 0, 0, 0, 2, 0, 1, 0, 1 },
+// 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+// 	{ 1, 0, 0, 0, 0, 0, 0, 0, 2, 1 },
+// 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+// 	{ 1, 0, 0, 0, 2, 0, 0, 0, 0, 1 },
+// 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+// 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+// 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+// };
 
 
 float   compute_delta_angle(float fov_start, float sprite_dir)
@@ -25,30 +25,30 @@ float   compute_delta_angle(float fov_start, float sprite_dir)
     return (delta);
 }
 
-int sprite_count(t_all *all)
-{
-    int count = 0;
-    // int i = 0;
-    all->map.y = 0;
-	while (all->map.y < 10 ) // нужна будет переменная под размер карты
-	{
-		all->map.x = 0;
-		while (all->map.x < 10) // нужна будет переменная под размер карты
-		{
-			if (map_int_2[all->map.y][all->map.x] == 2)
-            {
-                // all->sprite[i].x = all->map.x;
-                // all->sprite[i].y = all->map.y;
-                count++;
-                // i++;
-            }
-			all->map.x++;
-		}
-		all->map.y++;
-	}
-    // count /= SCALE;
-    return (count);
-}
+// int sprite_count(t_all *all)
+// {
+//     int count = 0;
+//     // int i = 0;
+//     all->map.y = 0;
+// 	while (all->map.y < 10 ) // нужна будет переменная под размер карты
+// 	{
+// 		all->map.x = 0;
+// 		while (all->map.x < 10) // нужна будет переменная под размер карты
+// 		{
+// 			if (map_int_2[all->map.y][all->map.x] == 2)
+//             {
+//                 // all->sprite[i].x = all->map.x;
+//                 // all->sprite[i].y = all->map.y;
+//                 count++;
+//                 // i++;
+//             }
+// 			all->map.x++;
+// 		}
+// 		all->map.y++;
+// 	}
+//     // count /= SCALE;
+//     return (count);
+// }
 
 // void get_sprite(t_all *all)
 // {
@@ -72,23 +72,23 @@ int sprite_count(t_all *all)
 // 	}
 // }
 
-void get_sprite_params(t_all *all)
-{
-    {
-        all->sprite[0].x = 261;
-        all->sprite[0].y = 147;
-		all->sprite[1].x = 316;
-        all->sprite[1].y = 260;
-		all->sprite[2].x = 286;
-        all->sprite[2].y = 417;
-		all->sprite[3].x = 235;
-        all->sprite[3].y = 328;
-	}
-}
+// void get_sprite_params(t_all *all)
+// {
+//     {
+//         all->sprite[0].x = 261;
+//         all->sprite[0].y = 147;
+// 		all->sprite[1].x = 316;
+//         all->sprite[1].y = 260;
+// 		all->sprite[2].x = 286;
+//         all->sprite[2].y = 417;
+// 		all->sprite[3].x = 235;
+//         all->sprite[3].y = 328;
+// 	}
+// }
 
 t_sprite *init_sprites(t_all *all)
 {
-    int count = sprite_count(all);
+    int count = all->sprite_count;
   
     if (!(all->sprite = malloc(sizeof(t_sprite) * (count + 1))))
         return (NULL);
@@ -165,7 +165,7 @@ t_sprite   **sort_sprites(t_all *all)
 {
     int i;
     int j;
-    int count = sprite_count(all);
+    int count = all->sprite_count;
     i = 0;
     while (i < count - 1)
 	{
@@ -229,11 +229,12 @@ void draw_sprite(t_all *all, int i, int j)
 
 void draw_all_sprites(t_all *all, int i)
 {
-    get_sprite_params(all);
+    // get_sprite_params(all);
+    get_sprite_positions(all);
 	sort_sprites(all);
     // sort_sprite(all, all->sprite_order, all->sprite_distance);
     int j = 0;
-    int count = sprite_count(all);
+    int count = all->sprite_count;
     while (j < count)
     {
         draw_sprite(all, i, j);
