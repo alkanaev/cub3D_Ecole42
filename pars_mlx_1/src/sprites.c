@@ -217,7 +217,7 @@ void draw_sprite(t_all *all, int i, int j)
         while (y < all->sprite[j].size)
         {
             color = draw_sprite_img(all, i, j, y);
-            if (color != 0x000000)
+            if (color != 0x000000 && all->cross.right_distance > all->sprite[j].dist)
             {
                  my_mlx_pixel_put(&all->data, i, all->sprite[j].v_offset + y, color);
             }
