@@ -243,7 +243,7 @@ int		ft_parser(t_map *map, char *line, int num_str)
 	return (0);
 }
 
-int		parser_map2(char *fichier, t_map *map, char *line, int i, t_all all)// (char *argv, int i, t_map *map, char *line) // reading_map
+int		parser_map2(char *fichier, t_map *map, char *line, int i, t_all *all)// (char *argv, int i, t_map *map, char *line) // reading_map
 {
 	// char	**card;
 	int		fd;
@@ -266,12 +266,12 @@ int		parser_map2(char *fichier, t_map *map, char *line, int i, t_all all)// (cha
 	}
 	(map->map)[i] = NULL;
 	// map->map = card;
-	if (validator_map(map, &all) || map->direction == -1)
+	if (validator_map(map, all) || map->direction == -1)
 		return (1);
 	return (0);
 }
 
-int		parser_map(char *fichier, t_map *map, t_all all)//pars_cub
+int		parser_map(char *fichier, t_map *map, t_all *all)//pars_cub
 {
 	int		r;
 	int i;
@@ -286,26 +286,28 @@ int		parser_map(char *fichier, t_map *map, t_all all)//pars_cub
 	{
 		ft_parser(map, line, i);
 		chipher_rfc_valid(line, map);
-		chipher_sides_valid(line, &all);
+		chipher_sides_valid(line, all);
 		cnt_map(line, map);
 		i++;
 		free(line);
 		line = NULL;
 	}
-	printf("F : %d\n", map->F);
-	printf("C : %d\n\n", map->C);
-		// printf("%d map->red \n", map->red_f);
-		// printf("%d map->green \n", map->green_f);
-		// printf("%d map->blue \n\n", map->blue_f);
-		// printf("%d map->red \n", map->red_c);
-		// printf("%d map->green \n", map->green_c);
-		// printf("%d map->blue \n\n", map->blue_c);
+	printf("Fint : %d\n", map->Fint);
+	printf("Fhex : %s\n", map->Fhex);
+	printf("Cint : %d\n", map->Cint);
+	printf("Chex : %s\n\n", map->Chex);
+		printf("%d map->red \n", map->red_f);
+		printf("%d map->green \n", map->green_f);
+		printf("%d map->blue \n\n", map->blue_f);
+		printf("%d map->red \n", map->red_c);
+		printf("%d map->green \n", map->green_c);
+		printf("%d map->blue \n\n", map->blue_c);
 
-	printf("NO PATH %s\n", all.texture[north].no_path);
-	printf("SO PATH %s\n", all.texture[south].so_path);
-	printf("WE PATH %s\n", all.texture[west].we_path);
-	printf("EA PATH %s\n", all.texture[east].ea_path);
-	printf("SPR PATH %s\n\n", all.sprite_img.spr);
+	printf("NO PATH %s\n", all->texture[north].no_path);
+	printf("SO PATH %s\n", all->texture[south].so_path);
+	printf("WE PATH %s\n", all->texture[west].we_path);
+	printf("EA PATH %s\n", all->texture[east].ea_path);
+	printf("SPR PATH %s\n\n", all->sprite_img.spr);
 
 	printf("max_rows : %d\n", map->max_rows);
 	printf("max_columns : 1 + %d\n\n", map->max_columns);

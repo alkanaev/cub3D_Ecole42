@@ -39,13 +39,13 @@ int control_player(int keycode, t_all *all)
 		all->player.dir -= 0.03;
 		fix_angle(&all->player.dir);
 	}
-	int x_max = all->player.x;
+	/*int x_max = all->player.x;
 	int y_max = all->player.y;
 	if (all->map.map[(int)all->player.x / SCALE][(int)all->player.y / SCALE] == '1')
 	{
 		all->player.x = x_max;
 		all->player.y = y_max;
-	}
+	}*/
 	//printf("%f\n", all->player.x);
 	//printf("%f\n", all->player.y);
 	return (0);

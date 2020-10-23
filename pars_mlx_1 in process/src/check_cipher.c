@@ -88,7 +88,7 @@ void floor_check(char *str, t_map *map, int k, int i)
 				map->resol2 = rosol_converting(str, map);
 				printf("map->resol1 in structures : %d\n", map->resol2);
 				if ((map->resol1 > 0) && (map->resol2 > 0))
-					feedback(str, " -  Resol ok\n");
+					feedback(str, " -  Resol ok\n\n");
 				else
 				{
 					feedback(str, " -  Resol error // Making default resol\n");
@@ -97,6 +97,36 @@ void floor_check(char *str, t_map *map, int k, int i)
 					printf("map->resol1 is now by default !!!!! :%d\n\n", map->resol2);
 				}
 			}
+}
+
+char *ft_itoa_h(int nb)
+{
+ int nb_tmp;
+ char *str;
+ int len = 0;
+
+ nb_tmp = nb;
+ if (nb == 0)
+  len++;
+ while (nb_tmp > 0)
+ {
+  nb_tmp /= 16;
+  len++;
+ }
+ if(!(str = malloc(sizeof(*str) * (len + 1))))
+  return (NULL);
+ str[len] = '\0';
+ while (len > 0)
+ {
+  str[len - 1] = nb % 16;
+  if (nb % 16 > 9)
+   str[len - 1] += 87;
+  else
+   str[len - 1] += '0';
+  nb /= 16;
+  len--;
+ }
+ return(str);
 }
 
 void	chipher_rfc_valid(char *str, t_map *map)
@@ -118,7 +148,8 @@ void	chipher_rfc_valid(char *str, t_map *map)
 		{
 			if (f_converting(str, map) == 0)
 			{
-				map->F = convert_colours(map->red_f, map->green_f, map->blue_f);
+				map->Fint = convert_colours(map->red_f, map->green_f, map->blue_f);
+				map->Fhex = ft_itoa_h(map->Fint);
 			}
 			//if (map->F != 0)
 			//	feedback(str, " - floor's colours ok\n");
@@ -128,7 +159,8 @@ void	chipher_rfc_valid(char *str, t_map *map)
 		{
 			if (c_converting(str, map) == 0)
 			{
-				map->C = convert_colours(map->red_c, map->green_c, map->blue_c);
+				map->Cint = convert_colours(map->red_c, map->green_c, map->blue_c);
+				map->Chex = ft_itoa_h(map->Cint);
 			}
 			//if (map->F != 0)
 			//	feedback(str, " - ceiling's colours ok\n");

@@ -44,8 +44,10 @@ typedef struct  s_map {
 	int			resol2;
 
 	int			el;
-	int			F;
-	int			C;
+	int			Fint;
+	int			Cint;
+    char		*Fhex;
+	char		*Chex;
 	int			max_columns;
     int         max_rows;
 	//char		**map;
@@ -173,9 +175,10 @@ typedef struct  s_all
 }               t_all;
 
 
+char *ft_itoa_h(int nb);
 // void get_positions(t_map *map);
 //int		check_format(char *str, t_map *map);
-int		check_format(char *str, t_map *map, t_all all);
+int		check_format(char *str, t_map *map, t_all *all);
 //void		pars_cub(char *fichier);
 //int			reading_map(char *fichier, t_map *map);
 int			rosol_converting(const char *str, t_map *map);
@@ -205,7 +208,7 @@ void	initialization_of_structures(t_map *map);
 
 //int parser_map(char *fichier, t_map *map);
 void	main_init(t_all *all);
-int		parser_map(char *fichier, t_map *map, t_all all);
+int		parser_map(char *fichier, t_map *map, t_all *all);
 int		check_cell(t_map *map, char c, int i, size_t j, t_all *all);
 int check_edge_end(t_map *map, int i, int up);
 int check_edge_origin(t_map *map, int i);
@@ -218,7 +221,7 @@ void	ft_pass_space(char *line, int *i);
 int		ft_parser_map(t_map *map, char *line, int num_str);
 int		ft_parser(t_map *map, char *line, int num_str);
 //int		parser_map2(char *fichier, t_map *map, char *line, int i);
-int		parser_map2(char *fichier, t_map *map, char *line, int i, t_all all);
+int		parser_map2(char *fichier, t_map *map, char *line, int i, t_all *all);
 void	initialization_of_structures(t_map *map);
 
 // functions for graphics

@@ -39,7 +39,7 @@ void	pars_cub(char *fichier)
 	reading_map(fichier, &map);
 }*/
 
-int		check_format(char *str, t_map *map, t_all all)
+int		check_format(char *str, t_map *map, t_all *all)
 {
 	int i;
 	i = 0;
