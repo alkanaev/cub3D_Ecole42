@@ -64,8 +64,8 @@ void	initialization_of_structures(t_map *map)
 	map->end_map = -1;
 	map->max_str = -1;
 	map->height_map = -1;
-	map->direction = -1;
-	//map->direction = 0;
+	// map->direction = -1;
+	map->direction = 0;
 	//исправила map->direction на ноль так как пока координаты задаются мануально в инит файле:
 	map->map = NULL;
 	map->error = -1;
@@ -74,7 +74,7 @@ void	initialization_of_structures(t_map *map)
 }
 
 
-int		check_cell(t_map *map, char c, int i, size_t j, t_all *all)
+int		check_cell(t_map *map, char c, int i, size_t j)
 {
 	if (c != 'N' && c != 'S' && c != 'W' && c != 'E' && c != '0' && c != '2')
 	{
@@ -83,17 +83,17 @@ int		check_cell(t_map *map, char c, int i, size_t j, t_all *all)
 		else
 			return (1);
 	}
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-	{
-		if (map->direction > 0)
-			return (1);
-		map->direction = 1;
-	}
-	if (c == 'N' || c == 'S' || c != 'W' || c != 'E')
-	{
-		all->player.x = j * SCALE + 32;
-		all->player.y = i * SCALE + 32;
-	}
+	// if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+	// {
+	// 	if (all->map.direction > 0)
+	// 		return (1);
+	// 	all->map.direction = 1;
+	// }
+	// if (c == 'N' || c == 'S' || c != 'W' || c != 'E')
+	// {
+	// 	all->player.x = j * SCALE + 32;
+	// 	all->player.y = i * SCALE + 32;
+	// }
 	if (map->map[i][j + 1] == ' ' || map->map[i][j - 1] == ' ' \
 		|| map->map[i + 1][j] == ' ' || map->map[i - 1][j] == ' ')
 		return (1);
@@ -162,12 +162,12 @@ int		validator_map_wtf30(t_map *map, int i, size_t j)
 	return (0);
 }
 
-int		validator_map_wtf25(t_map *map, int i, size_t j, t_all *all)
+int		validator_map_wtf25(t_map *map, int i, size_t j)
 {
 	j++;
 	while (j < ft_strlen(map->map[i]))
 	{
-		if (check_cell(map, map->map[i][j], i, j, all))
+		if (check_cell(map, map->map[i][j], i, j))
 			return (1);
 		j++;
 	}
@@ -177,7 +177,7 @@ int		validator_map_wtf25(t_map *map, int i, size_t j, t_all *all)
 	return (0);
 }
 
-int		validator_map(t_map *map, t_all *all)
+int		validator_map(t_map *map)
 {
 	int		i;
 	size_t	j;
@@ -195,7 +195,7 @@ int		validator_map(t_map *map, t_all *all)
 		if (i == 0 || i == map->height_map - 1)
 			validator_map_wtf30(map, i, j);
 		else
-			if (validator_map_wtf25(map, i, j, all))
+			if (validator_map_wtf25(map, i, j))
 				return (1);
 		i++;
 	}
@@ -243,7 +243,7 @@ int		ft_parser(t_map *map, char *line, int num_str)
 	return (0);
 }
 
-int		parser_map2(char *fichier, t_map *map, char *line, int i, t_all *all)// (char *argv, int i, t_map *map, char *line) // reading_map
+int		parser_map2(char *fichier, t_map *map, char *line, int i)// (char *argv, int i, t_map *map, char *line) // reading_map
 {
 	// char	**card;
 	int		fd;
@@ -266,7 +266,7 @@ int		parser_map2(char *fichier, t_map *map, char *line, int i, t_all *all)// (ch
 	}
 	(map->map)[i] = NULL;
 	// map->map = card;
-	if (validator_map(map, all) || map->direction == -1)
+	if (validator_map(map) || map->direction == -1)
 		return (1);
 	return (0);
 }
@@ -304,7 +304,7 @@ int		parser_map(char *fichier, t_map *map, t_all *all)//pars_cub
 		printf("%d map->blue \n\n", map->blue_c);
 
 	printf("NO PATH %s\n", all->texture[north].no_path);
-	printf("SO PATH %s\n", all->texture[south].so_path);
+	printf("%s\n", all->texture[south].so_path);
 	printf("WE PATH %s\n", all->texture[west].we_path);
 	printf("EA PATH %s\n", all->texture[east].ea_path);
 	printf("SPR PATH %s\n\n", all->sprite_img.spr);
@@ -313,8 +313,9 @@ int		parser_map(char *fichier, t_map *map, t_all *all)//pars_cub
 	printf("max_columns : 1 + %d\n\n", map->max_columns);
 	map->end_map = i;
 	close(fd);
-	if (parser_map2(fichier, map, line, 0, all))
+	if (parser_map2(fichier, map, line, 0))
 		feedback(fichier, " -  parser_map_gives_mistake\n\n\n\n");
+	printf("NO PATH %s\n", all->texture[north].no_path);
 	// printf("%c\n", map->map[2][1]);
 	// printf("%c\n", map->map[2][2]);
 	// printf("%c\n", map->map[2][3]);

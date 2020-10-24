@@ -61,6 +61,7 @@ typedef struct  s_map {
    char		*so_path;
 	char		*we_path;
 	char		*ea_path;
+    
 }               t_map;
 
 typedef struct  s_player {
@@ -132,7 +133,7 @@ typedef struct s_data
 typedef struct s_texture_data
 {
    void *img;
-   //char  *relative_path;
+   char  *relative_path;
    int   img_width;
    int   img_height;
    int   line_length;
@@ -160,21 +161,23 @@ typedef struct  s_sprite_img
 
 typedef struct  s_all
 {
-    int     **make_map;
     int     check;
     t_data  data;
     t_player player;
     t_map   map;
     t_cross cross;
     t_texture_data texture[4];
-    //t_texture_data texture;
     t_sprite_img sprite_img;
     t_sprite    *sprite;
     int			*sprite_order;
 	double		*sprite_distance;
+    int			sprite_count;
 }               t_all;
 
-
+t_sprite *init_sprites(t_all *all);
+void    draw_all_sprites(t_all *all, int i);
+void get_sprite_positions(t_all *all);
+void get_player_position(t_all *all);
 char *ft_itoa_h(int nb);
 // void get_positions(t_map *map);
 //int		check_format(char *str, t_map *map);
@@ -203,25 +206,24 @@ int			f_converting(char *str, t_map *map);
 int			c_converting(char *str, t_map *map);
 int			ft_isnumber(char *str);
 void        resol_init(t_map *map);
-void	initialization_of_structures(t_map *map);
 
 
 //int parser_map(char *fichier, t_map *map);
 void	main_init(t_all *all);
 int		parser_map(char *fichier, t_map *map, t_all *all);
-int		check_cell(t_map *map, char c, int i, size_t j, t_all *all);
+int		check_cell(t_map *map, char c, int i, size_t j);
 int check_edge_end(t_map *map, int i, int up);
 int check_edge_origin(t_map *map, int i);
 int		validator_map_wtf30(t_map *map, int i, size_t j);
 //int		validator_map_wtf25(t_map *map, int i, size_t j);
-int		validator_map_wtf25(t_map *map, int i, size_t j, t_all *all);
+int		validator_map_wtf25(t_map *map, int i, size_t j);
 //nt		validator_map(t_map *map);
-int		validator_map(t_map *map, t_all *all);
+int		validator_map(t_map *map);
 void	ft_pass_space(char *line, int *i);
 int		ft_parser_map(t_map *map, char *line, int num_str);
 int		ft_parser(t_map *map, char *line, int num_str);
 //int		parser_map2(char *fichier, t_map *map, char *line, int i);
-int		parser_map2(char *fichier, t_map *map, char *line, int i, t_all *all);
+int		parser_map2(char *fichier, t_map *map, char *line, int i);
 void	initialization_of_structures(t_map *map);
 
 // functions for graphics
@@ -246,8 +248,7 @@ void    find_wall(t_all *all);
 int     control_player(int keycode, t_all *all);
 int     render_next_frame(t_all *all);
 void	draw_ray(t_all *all);
-t_sprite *init_sprites(t_all *all);
-void    draw_all_sprites(t_all *all, int i);
+
 
 
 #endif

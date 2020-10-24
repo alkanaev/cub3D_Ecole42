@@ -8,7 +8,7 @@ void	texture_reader2(char *str, char *texture, int i, int j)
 		i++;
 		j++;
 	}
-	//feedback(str, " - texture ok\n");
+	feedback(str, " - texture ok\n");
 	texture[i] = '\0';
 }
 

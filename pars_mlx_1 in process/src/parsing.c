@@ -57,14 +57,18 @@ int		check_format(char *str, t_map *map, t_all *all)
 	if (str[i + 1] == 'c' && str[i + 2] == 'u' && str[i + 3] == 'b')
 	{
 		parser_map(str, map, all);
+		// printf("%c\n", all->map.map[2][4]);
+		// printf("%c\n", map->map[2][4]);
+		//printf("%s\n", all->texture[north].no_path);
 		//printf("%s\n", str);
-	}
-		
+	}	
 	else
 		feedback(str, " -  not a cub file\n");
 	return (0);
 	
 }
+
+
 
 /*int		main(int argc, char **argv)
 {
