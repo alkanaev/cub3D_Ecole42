@@ -82,24 +82,24 @@ void floor_check(char *str, t_map *map, int k, int i)
 			if (k != 2)
 			{
 				feedback(str, " -  Resol mistake\n");
-				resol_init(map);
-				printf("map->resol1 is now by default : %d\n", map->resol1);
-				printf("map->resol1 is now by default : %d\n\n", map->resol2);
+				//resol_init(map);
+				printf("map->resol1 is now by default : %d\n", map->s_width);
+				printf("map->resol1 is now by default : %d\n\n", map->s_height);
 			}
 			else
 			{
-				map->resol1 = rosol_converting(str, map);
-				printf("map->resol1 in structures : %d\n", map->resol1);
-				map->resol2 = rosol_converting(str, map);
-				printf("map->resol1 in structures : %d\n", map->resol2);
-				if ((map->resol1 > 0) && (map->resol2 > 0))
+				map->s_width = rosol_converting(str, map);
+				printf("map->resol1 in structures : %d\n", map->s_width);
+				map->s_height = rosol_converting(str, map);
+				printf("map->resol1 in structures : %d\n", map->s_height);
+				if ((map->s_width > 0) && (map->s_height > 0))
 					feedback(str, " -  Resol ok\n\n");
 				else
 				{
 					feedback(str, " -  Resol error // Making default resol\n");
-					resol_init(map);
-					printf("map->resol1 is now by default !!!!! : %d\n", map->resol1);
-					printf("map->resol1 is now by default !!!!! :%d\n\n", map->resol2);
+					//resol_init(map);
+					printf("map->resol1 is now by default !!!!! : %d\n",map->s_width);
+					printf("map->resol1 is now by default !!!!! :%d\n\n", map->s_height);
 				}
 			}
 }

@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 
 HEADER = cub3d.h
 

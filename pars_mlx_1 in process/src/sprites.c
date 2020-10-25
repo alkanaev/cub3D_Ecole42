@@ -11,16 +11,6 @@ float   compute_delta_angle(float fov_start, float sprite_dir)
     return (delta);
 }
 
-t_sprite *init_sprites(t_all *all)
-{
-    int count = all->sprite_count;
-  
-    if (!(all->sprite = malloc(sizeof(t_sprite) * (count + 1))))
-        return (NULL);
-    // all->sprite[count] = NULL;
-    return(all->sprite);
-}
-
 void ft_swap(t_sprite *xp, t_sprite *yp) 
 { 
     t_sprite temp = *xp; 
@@ -84,7 +74,7 @@ void draw_sprite(t_all *all, int i, int j)
         while (y < all->sprite[j].size)
         {
             color = draw_sprite_img(all, i, j, y);
-            if (color != 0x000000 && all->cross.right_distance > all->sprite[j].dist)
+            if (color != 0x000000 && all->cross.closest_cross > all->sprite[j].dist)
             {
                  my_mlx_pixel_put(&all->data, i, all->sprite[j].v_offset + y, color);
             }

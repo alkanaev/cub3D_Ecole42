@@ -48,15 +48,13 @@ void	cnt_map(char *str, t_map *map) // подсчет карты
 	}
 	map->max_columns = max_columns;
 	map->max_rows = max_rows;
-	//printf("%d\n", lines_cnt);
-	//printf("%d\n", map->maxsize);
 }
 
-void resol_init(t_map *map)
-{
-	map->resol1 = 1200;
-	map->resol2 = 800;
-}
+// void resol_init(t_map *map)
+// {
+// 	map->resol1 = 1200;
+// 	map->resol2 = 800;
+// }
 
 void	initialization_of_structures(t_map *map)
 {
@@ -69,8 +67,6 @@ void	initialization_of_structures(t_map *map)
 	//исправила map->direction на ноль так как пока координаты задаются мануально в инит файле:
 	map->map = NULL;
 	map->error = -1;
-	//map->resol1 = 1200;
-	//map->resol2 = 800;
 }
 
 
@@ -83,12 +79,12 @@ int		check_cell(t_map *map, char c, int i, size_t j)
 		else
 			return (1);
 	}
-	// if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-	// {
-	// 	if (all->map.direction > 0)
-	// 		return (1);
-	// 	all->map.direction = 1;
-	// }
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+	{
+		if (map->direction > 0)
+			return (1);
+		map->direction = 1;
+	}
 	// if (c == 'N' || c == 'S' || c != 'W' || c != 'E')
 	// {
 	// 	all->player.x = j * SCALE + 32;
@@ -245,7 +241,6 @@ int		ft_parser(t_map *map, char *line, int num_str)
 
 int		parser_map2(char *fichier, t_map *map, char *line, int i)// (char *argv, int i, t_map *map, char *line) // reading_map
 {
-	// char	**card;
 	int		fd;
 
 	fd = open(fichier, O_RDONLY);
@@ -261,11 +256,9 @@ int		parser_map2(char *fichier, t_map *map, char *line, int i)// (char *argv, in
 	{
 		(map->map)[i] = (char *)malloc(sizeof(char) * map->max_str);
 		get_next_line(fd, &(map->map)[i]);
-		// card[i] = line;
 		i++;
 	}
 	(map->map)[i] = NULL;
-	// map->map = card;
 	if (validator_map(map) || map->direction == -1)
 		return (1);
 	return (0);
@@ -292,7 +285,6 @@ int		parser_map(char *fichier, t_map *map, t_all *all)//pars_cub
 		free(line);
 		line = NULL;
 	}
-	//get_player_position(all);
 	printf("Fint : %d\n", map->Fint);
 	//printf("Fhex : %s\n", map->Fhex);
 	printf("Cint : %d\n", map->Cint);

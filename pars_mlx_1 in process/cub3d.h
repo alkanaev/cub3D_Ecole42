@@ -24,8 +24,8 @@
 # define RIGHT 124
 # define SCALE 64
 # define MAX 640
-# define S_WIDTH 1200// length of the screen
-# define S_HEIGHT 800 // width of the screen
+#define S_WIDTH 1200 // length of the screen
+#define S_HEIGHT 800 // width of the screen
 # define SCREEN_CENTER 400 // (1/2 width)
 
 typedef struct  s_map {
@@ -40,8 +40,8 @@ typedef struct  s_map {
 	int		direction;
 	char	error;
 
-	int			resol1;
-	int			resol2;
+	int			s_width;
+	int			s_height;
 
 	int			el;
 	int			Fint;
@@ -50,17 +50,12 @@ typedef struct  s_map {
 	char		*Chex;
 	int			max_columns;
     int         max_rows;
-	//char		**map;
 	int			red_f;
 	int			green_f;
 	int			blue_f;
     int			red_c;
 	int			green_c;
 	int			blue_c;
-       char		*no_path;
-   char		*so_path;
-	char		*we_path;
-	char		*ea_path;
     
 }               t_map;
 
@@ -140,10 +135,6 @@ typedef struct s_texture_data
    int   bits_per_pixel;
    int   endian;
    char  *addr;
-   char		*no_path;
-   char		*so_path;
-	char		*we_path;
-	char		*ea_path;
 }             t_texture_data;
 
 typedef struct  s_sprite_img
