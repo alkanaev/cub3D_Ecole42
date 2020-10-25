@@ -53,7 +53,6 @@ int		main(int argc, char **argv)
 	else
 		ft_putstr("no file given");
 	//if (all.check == 0)
-	printf("NO PATH %s\n", all.texture[north].no_path);
 	//mlx_launch(&all);
 	//parser_map(argv[1]);
 	///check//////////

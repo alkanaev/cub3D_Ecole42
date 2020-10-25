@@ -46,23 +46,28 @@ void	chipher_sides_valid(char *str, t_all *all)
 	int i;
 	i = 0;
 	if (str[i] == 'N' && str[i + 1] == 'O' && str[i + 2] == ' ')
-		all->texture[north].no_path = texture_reader(str);
+		all->texture[north].relative_path = texture_reader(str);
+		// all->texture[north].no_path = texture_reader(str);
 		//all->map.no_path = texture_reader(str);
 		
 	if (str[i] == 'S' && str[i + 1] == 'O' && str[i + 2] == ' ')
-		all->texture[south].so_path = texture_reader(str);
+		all->texture[south].relative_path = texture_reader(str);
+		//all->texture[south].so_path = texture_reader(str);
 		//all->map.so_path = texture_reader(str);
 		
 	if (str[i] == 'W' && str[i + 1] == 'E' && str[i + 2] == ' ')
-		all->texture[west].we_path = texture_reader(str);
+		all->texture[west].relative_path = texture_reader(str);
+		//all->texture[west].we_path = texture_reader(str);
 		//all->map.we_path = texture_reader(str);
 		
 	if (str[i] == 'E' && str[i + 1] == 'A' && str[i + 2] == ' ')
-		all->texture[east].ea_path = texture_reader(str);
+		all->texture[east].relative_path = texture_reader(str);
+		//all->texture[east].ea_path = texture_reader(str);
 		//all->map.ea_path = texture_reader(str);
 		
 	if (str[i] == 'S' && str[i + 1] == ' ')
-		all->sprite_img.spr = texture_reader(str);
+		//all->sprite_img.spr = texture_reader(str);
+		all->sprite_img.relative_path = texture_reader(str);
 		
 }
 

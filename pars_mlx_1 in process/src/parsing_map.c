@@ -292,10 +292,11 @@ int		parser_map(char *fichier, t_map *map, t_all *all)//pars_cub
 		free(line);
 		line = NULL;
 	}
+	//get_player_position(all);
 	printf("Fint : %d\n", map->Fint);
-	printf("Fhex : %s\n", map->Fhex);
+	//printf("Fhex : %s\n", map->Fhex);
 	printf("Cint : %d\n", map->Cint);
-	printf("Chex : %s\n\n", map->Chex);
+	//printf("Chex : %s\n\n", map->Chex);
 		printf("%d map->red \n", map->red_f);
 		printf("%d map->green \n", map->green_f);
 		printf("%d map->blue \n\n", map->blue_f);
@@ -303,11 +304,16 @@ int		parser_map(char *fichier, t_map *map, t_all *all)//pars_cub
 		printf("%d map->green \n", map->green_c);
 		printf("%d map->blue \n\n", map->blue_c);
 
-	printf("NO PATH %s\n", all->texture[north].no_path);
-	printf("%s\n", all->texture[south].so_path);
-	printf("WE PATH %s\n", all->texture[west].we_path);
-	printf("EA PATH %s\n", all->texture[east].ea_path);
-	printf("SPR PATH %s\n\n", all->sprite_img.spr);
+	printf("NO PATH %s\n", all->texture[north].relative_path);
+	// printf("NO PATH %s\n", all->texture[north].no_path);
+	printf("%s\n", all->texture[south].relative_path);
+	// printf("%s\n", all->texture[south].so_path);
+	printf("WE PATH %s\n", all->texture[west].relative_path);
+	// printf("WE PATH %s\n", all->texture[west].we_path);
+	printf("EA PATH %s\n", all->texture[east].relative_path);
+	//printf("EA PATH %s\n", all->texture[east].ea_path);
+	//printf("SPR PATH %s\n\n", all->sprite_img.spr);
+	printf("SPR PATH %s\n\n", all->sprite_img.relative_path);
 
 	printf("max_rows : %d\n", map->max_rows);
 	printf("max_columns : 1 + %d\n\n", map->max_columns);
@@ -315,7 +321,6 @@ int		parser_map(char *fichier, t_map *map, t_all *all)//pars_cub
 	close(fd);
 	if (parser_map2(fichier, map, line, 0))
 		feedback(fichier, " -  parser_map_gives_mistake\n\n\n\n");
-	printf("NO PATH %s\n", all->texture[north].no_path);
 	// printf("%c\n", map->map[2][1]);
 	// printf("%c\n", map->map[2][2]);
 	// printf("%c\n", map->map[2][3]);
