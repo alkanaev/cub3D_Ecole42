@@ -27,7 +27,6 @@ SRCS =	./src/parsing.c \
 
 # CFLAGS = -Wall -Wextra -Werror -g
 
-# # добавить зависимость $(NAME) and cub3D.h
 # all:  $(NAME)
 # 	$(MAKE) -C $(MLX_DIR)
 # 	$(MAKE) -C $(LIBFT_DIR)

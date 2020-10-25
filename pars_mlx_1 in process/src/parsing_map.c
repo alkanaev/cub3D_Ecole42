@@ -85,11 +85,6 @@ int		check_cell(t_map *map, char c, int i, size_t j)
 			return (1);
 		map->direction = 1;
 	}
-	// if (c == 'N' || c == 'S' || c != 'W' || c != 'E')
-	// {
-	// 	all->player.x = j * SCALE + 32;
-	// 	all->player.y = i * SCALE + 32;
-	// }
 	if (map->map[i][j + 1] == ' ' || map->map[i][j - 1] == ' ' \
 		|| map->map[i + 1][j] == ' ' || map->map[i - 1][j] == ' ')
 		return (1);
