@@ -7,7 +7,7 @@ static void	cast_rays(t_all *all)
 {
 	all->player.fov_start = all->player.dir + M_PI / 6;
 	int i = 0;
-	while (i < all->map.s_width)
+	while (i < S_WIDTH)
 	{
 		fix_angle(&all->player.fov_start); 
 		horizontal_cross(all);
@@ -34,6 +34,7 @@ int     render_next_frame(t_all *all)
 	// draw_map(all);
 	// draw_player(all);
 	cast_rays(all);
+	// остальные два не нужны для скриншота, не забыть поставить условие!!!
 	mlx_put_image_to_window(all->data.mlx, all->data.mlx_win, all->data.img, 0, 0);
 	mlx_do_sync(all->data.mlx); // это чтоб не было мусора на изображении
 	return (1);

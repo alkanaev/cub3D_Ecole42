@@ -19,7 +19,7 @@ void            draw_wall(t_all *all, int width)
 	int y;
 	while (y_start < all->player.ceiling[width] + all->player.slice_height[width])
 	{
-		if (y_start < all->map.s_height && y_start > 0)
+		if (y_start < S_HEIGHT && y_start > 0)
 		{
 			y = (int)((y_start - all->player.ceiling[width]) / all->player.slice_height[width] * (float)texture.img_height);
 			int x_texture = all->cross.offset[width] / SCALE * texture.img_width;

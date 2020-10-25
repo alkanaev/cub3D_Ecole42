@@ -24,8 +24,8 @@
 # define RIGHT 124
 # define SCALE 64
 # define MAX 640
-#define S_WIDTH 1200 // length of the screen
-#define S_HEIGHT 800 // width of the screen
+#define S_WIDTH 1600 // length of the screen
+#define S_HEIGHT 1000 // width of the screen
 # define SCREEN_CENTER 400 // (1/2 width)
 
 typedef struct  s_map {
