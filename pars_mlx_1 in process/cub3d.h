@@ -26,7 +26,7 @@
 # define MAX 640
 #define S_WIDTH 1600 // length of the screen
 #define S_HEIGHT 1000 // width of the screen
-# define SCREEN_CENTER 400 // (1/2 width)
+# define SCREEN_CENTER 500 // (1/2 width)
 
 typedef struct  s_map {
     
@@ -66,8 +66,8 @@ float dir;
 float angle; // angle between subsequent rays
 float fov_start;
 float dist_to_screen;
-float slice_height[S_WIDTH]; // потом сделать динамически
-float ceiling[S_WIDTH];
+float *slice_height; // потом сделать динамически
+float *ceiling;
 }               t_player;
 
 typedef struct  s_sprite {
@@ -108,7 +108,7 @@ typedef   struct    s_cross {
     float   right_distance;
     float   wall_x;
     float   wall_y;
-    float   offset[S_WIDTH];
+    float   *offset;
     int     hit; // 1 - hit horizontally, 0 - hit vertically
     t_hit_side      hit_side;
 }                   t_cross;

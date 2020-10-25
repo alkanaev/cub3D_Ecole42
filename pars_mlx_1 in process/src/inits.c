@@ -48,26 +48,26 @@ t_sprite *init_sprites(t_all *all)
     return(all->sprite);
 }
 
-// void *init_slice_height(t_all *all)
-// {
-// 	if (!(all->player.slice_height = malloc(sizeof(char) * (all->map.s_width + 1))))
-//         return (NULL);
-//     return(all->player.slice_height);
-// }
+float *init_slice_height(t_all *all)
+{
+	if (!(all->player.slice_height = (float *)malloc(sizeof(float) * (all->map.s_width))))
+        return (NULL);
+    return(all->player.slice_height);
+}
 
-// void *init_ceiling(t_all *all)
-// {
-// 	if (!(all->player.ceiling = malloc(sizeof(char) * (all->map.s_width + 1))))
-//         return (NULL);
-//     return(all->player.ceiling);
-// }
+float *init_ceiling(t_all *all)
+{
+	if (!(all->player.ceiling = (float *)malloc(sizeof(float) * (all->map.s_width))))
+        return (NULL);
+    return(all->player.ceiling);
+}
 
-// void *init_offset(t_all *all)
-// {
-// 	if (!(all->cross.offset = malloc(sizeof(char) * (all->map.s_width + 1))))
-//         return (NULL);
-//     return(all->cross.offset);
-// }
+float *init_offset(t_all *all)
+{
+	if (!(all->cross.offset = (float *)malloc(sizeof(float) * (all->map.s_width))))
+        return (NULL);
+    return(all->cross.offset);
+}
 
 void init_textures(t_all *all)
 {
@@ -81,9 +81,9 @@ void init_textures(t_all *all)
 void init_all(t_all *all)
 {
 	init_player(all);
-	//init_slice_height(all);
-	//init_offset(all);
-	//init_ceiling(all);
 	init_textures(all);
+	init_slice_height(all);
+	init_offset(all);
+	init_ceiling(all);
 	init_sprites(all);
 }
