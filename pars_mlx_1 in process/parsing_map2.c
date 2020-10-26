@@ -26,7 +26,7 @@ t_map *initialization_of_structures(t_map *map)
     map->start_map = -1;
     map->end_map = -1;
     map-> height_map = -1;
-    map->direction = -1;
+    map->dir = -1;
     map->map = NULL;
     return (map);
 }
@@ -43,9 +43,9 @@ int check_cell(t_map *map, char **card, char c, int i, int j)
     }
     if(c == 'N' || c == 'S' || c == 'W' || c == 'E')
     {
-        if(map->direction > 0)
+        if(map->dir > 0)
             return (1);
-        map->direction = 1;
+        map->dir = 1;
     }
     if(card[i][j + 1] == ' ' || card[i][j - 1] == ' ' || card[i + 1][j] == ' ' || card[i - 1][j] == ' ') 
         return (1);

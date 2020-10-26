@@ -62,9 +62,9 @@ void	initialization_of_structures(t_map *map)
 	map->end_map = -1;
 	map->max_str = -1;
 	map->height_map = -1;
-	// map->direction = -1;
-	map->direction = 0;
-	//исправила map->direction на ноль так как пока координаты задаются мануально в инит файле:
+	// map->dir = -1;
+	map->dir = 0;
+	//исправила map->dir на ноль так как пока координаты задаются мануально в инит файле:
 	map->map = NULL;
 	map->error = -1;
 }
@@ -81,9 +81,9 @@ int		check_cell(t_map *map, char c, int i, size_t j)
 	}
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 	{
-		if (map->direction > 0)
+		if (map->dir > 0)
 			return (1);
-		map->direction = 1;
+		map->dir = 1;
 	}
 	if (map->map[i][j + 1] == ' ' || map->map[i][j - 1] == ' ' \
 		|| map->map[i + 1][j] == ' ' || map->map[i - 1][j] == ' ')
@@ -254,7 +254,7 @@ int		parser_map2(char *fichier, t_map *map, char *line, int i)// (char *argv, in
 		i++;
 	}
 	(map->map)[i] = NULL;
-	if (validator_map(map) || map->direction == -1)
+	if (validator_map(map) || map->dir == -1)
 		return (1);
 	return (0);
 }

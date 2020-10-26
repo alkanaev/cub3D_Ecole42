@@ -103,7 +103,7 @@ void shortest_distance(t_all *all, int i) // choose the closeset wall hit coordi
 			all->cross.hit = 0; // remember that we hit the wall vertically to check the wall side after
 			all->cross.offset[i] = fmod(all->cross.wall_y, SCALE); // calculate offset for drawing the wall
 		}
-		all->cross.right_distance = all->cross.closest_cross * cos(all->player.dir - all->player.fov_start); // get rid of the fisheye effect
+		all->cross.right_distance = all->cross.closest_cross * cos(all->map.dir - all->player.fov_start); // get rid of the fisheye effect
 }
 
 void fix_angle(float *angle)

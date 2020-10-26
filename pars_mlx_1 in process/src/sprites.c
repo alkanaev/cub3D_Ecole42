@@ -56,7 +56,7 @@ int            draw_sprite_img(t_all *all, int i, int j, int y)
 void draw_sprite(t_all *all, int i, int j)
 {
     int color;
-    float start = all->player.dir + M_PI / 6;
+    float start = all->map.dir + M_PI / 6;
     all->sprite[j].dir = atan2(all->player.y - all->sprite[j].y, all->sprite[j].x - all->player.x);
     fix_angle(&all->sprite[j].dir);
     all->sprite[j].delta = compute_delta_angle(start, all->sprite[j].dir);

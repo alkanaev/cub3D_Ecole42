@@ -34,7 +34,7 @@ typedef struct  s_map {
 	int		max_str;
 	int		height_map;
 	char	**map;
-	int		direction;
+	float		dir;
 	char	error;
 
 	int			s_width;
@@ -216,6 +216,7 @@ void	initialization_of_structures(t_map *map);
 
 // functions for graphics
 void    init_all(t_all *all);
+void get_player_direction(t_all *all);
 void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void    draw_wall(t_all *all, int width);
 void    draw_player(t_all *all); 
