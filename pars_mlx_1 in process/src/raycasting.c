@@ -3,7 +3,7 @@
 /* make necessary calculations for each ray
 and draw ceiling, wall and floor by slice
 */
-static void	cast_rays(t_all *all)
+void	cast_rays(t_all *all)
 {
 	all->player.fov_start = all->map.dir + M_PI / 6;
 	int i = 0;

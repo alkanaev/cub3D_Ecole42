@@ -30,14 +30,14 @@ int                 bmp_data(int fd, t_all *all, int padsize)
     int             x;
     int             y;
     int             pixel;
-    y = all->pars.screen_height;
+    y = all->map.s_height;
     ft_bzero(zero, 3);
     while (--y >= 0)
     {
         x = -1;
-        while (++x < all->pars.screen_width)
+        while (++x < all->map.s_width)
         {
-            pixel = *(all->data.addr_int + x + y * all->data.lenl / 4);
+            pixel = *(all->data.addr_int + x + y * all->data.line_length / 4);
             if (write(fd, &pixel, 3) < 0)
                 return (0);
             if (padsize > 0 && write(fd, &zero, padsize) < 0)
@@ -50,12 +50,12 @@ int                 take_screenshot(t_all *all)
 {
     int             padsize;
     int             fd;
-    render_next_frame(all);
-    padsize = (4 - ((int)all->pars.screen_width * 3) % 4) % 4;
+    cast_rays(all);
+    padsize = (4 - ((int)all->map.s_width * 3) % 4) % 4;
     if ((fd = open("screenshot.bmp",
             O_WRONLY | O_CREAT, 0777 | O_TRUNC | O_APPEND)) < 0)
         return (0);
-    bmp_header(fd, all->pars.screen_height, all->pars.screen_width, padsize);
+    bmp_header(fd, all->map.s_height, all->map.s_width, padsize);
     bmp_data(fd, all, padsize);
     close(fd);
     return (1);
@@ -63,9 +63,9 @@ int                 take_screenshot(t_all *all)
 void                make_screenshot(t_all *all)
 {
     all->data.addr_int = (int *)mlx_get_data_addr(all->data.img,
-                        &all->data.bpp, &all->data.lenl, &all->data.en);
+                        &all->data.bits_per_pixel, &all->data.line_length, &all->data.endian);
     take_screenshot(all);
     if (!take_screenshot(all))
-        put_error("ERROR\n  --Couldn't create/open screenshot.bmp--\n");
-    put_error("Screenshot create!\n");
+        ft_putstr("ERROR\n  --Couldn't create/open screenshot.bmp--make\n");
+    ft_putstr("Screenshot create!\n");
 }

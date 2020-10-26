@@ -69,6 +69,21 @@ float *init_offset(t_all *all)
     return(all->cross.offset);
 }
 
+void init_screen_params(t_all *all)
+{
+	int max_s_width;
+	int max_s_height;
+	
+	max_s_width = 240;
+	max_s_height = 360;
+
+	mlx_get_screen_size(all->data.mlx, &max_s_width, &max_s_height);
+	if (all->map.s_width > max_s_width)
+		all->map.s_width = max_s_width;
+	if (all->map.s_height > max_s_height)
+		all->map.s_height = max_s_height;
+}
+
 void init_textures(t_all *all)
 {
 	get_texture_data_north(all);
@@ -86,4 +101,5 @@ void init_all(t_all *all)
 	init_offset(all);
 	init_ceiling(all);
 	init_sprites(all);
+	init_screen_params(all);
 }

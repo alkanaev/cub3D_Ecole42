@@ -13,6 +13,7 @@ SRCS =	parsing.c \
 		player_move.c \
 		raycasting.c \
 		get_positions.c \
+		screenshot.c \
 		main.c \
 		sprites.c
 

@@ -119,6 +119,7 @@ typedef struct s_data
     int endian;
     void *mlx;
     void *mlx_win;
+    int *addr_int;
 
 }       t_data;
 
@@ -234,10 +235,12 @@ void    fix_angle(float *angle);
 void    calculate_wall(t_all *all, int i);
 void    find_wall(t_all *all);
 
+void                make_screenshot(t_all *all);
 int     control_player(int keycode, t_all *all);
 int     render_next_frame(t_all *all);
 void	draw_ray(t_all *all);
-
+int		ft_strcmp(char const *s1, char const *s2);
+void	cast_rays(t_all *all);
 
 
 #endif
