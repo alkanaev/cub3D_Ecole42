@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void                int_to_char(unsigned char *c, int i)
 {

@@ -27,6 +27,7 @@
 #define S_WIDTH 1600 // length of the screen
 #define S_HEIGHT 1000 // width of the screen
 # define SCREEN_CENTER 500 // (1/2 width)
+# define valid 0
 
 typedef struct  s_map {
     
