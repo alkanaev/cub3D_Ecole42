@@ -4,8 +4,8 @@ static void init_player(t_all *all)
 {
 	get_player_position(all);
 	all->player.dir =  M_PI / 2;
-	all->player.angle = (M_PI / 3) / S_WIDTH; // fov / width of projection plane
-	all->player.dist_to_screen = (S_WIDTH / 2) / tan(M_PI / 6); // 1/2 screen / tan(30)
+	all->player.angle = (M_PI / 3) / all->map.s_width; // fov / width of projection plane
+	all->player.dist_to_screen = (all->map.s_width / 2) / tan(M_PI / 6); // 1/2 screen / tan(30)
 
 }
 

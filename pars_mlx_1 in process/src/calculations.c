@@ -116,10 +116,8 @@ void fix_angle(float *angle)
 
 void calculate_wall(t_all *all, int i)
 {
-	// all->player.slice_height[i] = S_HEIGHT * 64 / all->cross.right_distance; - just another formula to calculate the wall height
 	all->player.slice_height[i] = ceil((SCALE / all->cross.right_distance) * all->player.dist_to_screen);
-	all->player.ceiling[i] = SCREEN_CENTER - (all->player.slice_height[i] / 2);     
-
+	all->player.ceiling[i] = (all->map.s_height / 2) - (all->player.slice_height[i] / 2);     
 }
 
 void find_wall(t_all *all)

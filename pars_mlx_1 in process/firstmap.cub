@@ -1,4 +1,4 @@
-R 1600 1000
+R 1200 800
 NO ./north_wall.xpm
 WE ./west_wall.xpm
 SO ./south_wall.xpm

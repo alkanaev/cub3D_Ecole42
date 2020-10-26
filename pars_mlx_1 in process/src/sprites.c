@@ -62,10 +62,10 @@ void draw_sprite(t_all *all, int i, int j)
     all->sprite[j].delta = compute_delta_angle(start, all->sprite[j].dir);
     all->sprite[j].dist = sqrt(pow(all->player.x - all->sprite[j].x, 2) + pow(all->player.y - all->sprite[j].y, 2)); // по теореме пифагора
     all->sprite[j].size = ceil(((SCALE / 2) / all->sprite[j].dist) * all->player.dist_to_screen);
-    if (all->sprite[j].size > S_HEIGHT)
+    if (all->sprite[j].size > all->map.s_height)
         all->sprite[j].size = 0;
-    all->sprite[j].h_offset = all->sprite[j].delta / ((M_PI / 3) / S_WIDTH) - all->sprite[j].size / 2; 
-    all->sprite[j].v_offset = SCREEN_CENTER - all->sprite[j].size / 2;
+    all->sprite[j].h_offset = all->sprite[j].delta / ((M_PI / 3) / all->map.s_width) - all->sprite[j].size / 2; 
+    all->sprite[j].v_offset = (all->map.s_height / 2) - all->sprite[j].size / 2;
     
 
     if (i >= all->sprite[j].h_offset && i <= all->sprite[j].h_offset + all->sprite[j].size)

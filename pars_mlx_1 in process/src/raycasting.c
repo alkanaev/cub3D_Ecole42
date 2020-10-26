@@ -7,7 +7,7 @@ static void	cast_rays(t_all *all)
 {
 	all->player.fov_start = all->player.dir + M_PI / 6;
 	int i = 0;
-	while (i < S_WIDTH)
+	while (i < all->map.s_width)
 	{
 		fix_angle(&all->player.fov_start); 
 		horizontal_cross(all);

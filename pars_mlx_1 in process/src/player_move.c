@@ -15,24 +15,24 @@ int control_player(int keycode, t_all *all)
 	}     
     else if(keycode == KA)
 	{
-        all->player.x -= 5.23 * sin(all->player.dir); // если вдруг сегается, то изменить шаг на 0.11 или такой параметр, на который не делится без остатка
-		all->player.y -= 5.23 * cos(all->player.dir);
+        all->player.x -= 8.23 * sin(all->player.dir); // если вдруг сегается, то изменить шаг на 0.11 или такой параметр, на который не делится без остатка
+		all->player.y -= 8.23 * cos(all->player.dir);
 	}
     else if (keycode == KS)
 	{
-		all->player.x -= 5.23 * cos(all->player.dir);
-		all->player.y += 5.23 * sin(all->player.dir);
+		all->player.x -= 8.23 * cos(all->player.dir);
+		all->player.y += 8.23 * sin(all->player.dir);
 	}
         
     else if (keycode == KD)
         {
-			all->player.x += 5.23 * sin(all->player.dir);
-			all->player.y += 5.23 * cos(all->player.dir);
+			all->player.x += 8.23 * sin(all->player.dir);
+			all->player.y += 8.23 * cos(all->player.dir);
 		}
     else if (keycode == KW)
        {
-		   all->player.x += 5.23 * cos(all->player.dir);
-			all->player.y -= 5.23 * sin(all->player.dir);
+		   all->player.x += 8.23 * cos(all->player.dir);
+			all->player.y -= 8.23 * sin(all->player.dir);
 	   }
 	else if (keycode == LEFT)
 	{
