@@ -86,9 +86,10 @@ int		main(int argc, char **argv)
 	}
 	if (argc == 3 && ft_strcmp(argv[2], "--save") == 0)
 		save_bmp(&all);
-	if (argc == 2 && all.map.valid == 1)
+	else if (argc == 2 && all.map.valid == 1)
 		launch_cub(&all);
-	if (argc < 2 || argc > 3 || all.map.valid == 0)
+	//if (argc < 2 || argc > 3 || all.map.valid == 0)
+	else
 		ft_putstr("error");
 	return (0);
 }
