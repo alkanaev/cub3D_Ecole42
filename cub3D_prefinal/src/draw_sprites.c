@@ -25,8 +25,8 @@ static  void draw_sprite(t_all *all, int i, int j)
         all->sp[j].size = 0;
     all->sp[j].h_offset = all->sp[j].delta / ((M_PI / 3) / all->map.s_width) - all->sp[j].size / 2; 
     all->sp[j].v_offset = (all->map.s_height / 2) - all->sp[j].size / 2;
-    
-
+    if (all->sp[j].h_offset < 0 && all->sp[j].h_offset > all->map.s_width - 1)
+            all->sp[j].size = 0;
     if (i >= all->sp[j].h_offset && i <= all->sp[j].h_offset + all->sp[j].size)
     {
         int y = 0;
@@ -42,7 +42,6 @@ static  void draw_sprite(t_all *all, int i, int j)
 
 void draw_all_sprites(t_all *all, int i)
 {
-    get_sprite_positions(all);
 	sort_sprites(all);
     int j = 0;
     int count = all->sprite_count;

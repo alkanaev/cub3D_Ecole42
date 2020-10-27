@@ -159,6 +159,8 @@ typedef struct  s_all
     t_sprite_img sprite_img;
     t_sprite    *sp;
     int			*sprite_order;
+    int         max_s_width;
+    int         max_s_height;
 	double		*sprite_distance;
     int			sprite_count;
 }               t_all;
@@ -235,6 +237,7 @@ int control_player(int keycode, t_all *all);
 float *init_slice_height(t_all *all);
 float *init_ceiling(t_all *all);
 float *init_offset(t_all *all);
+void init_screen_params(t_all *all);
 
 void                make_screenshot(t_all *all);
 

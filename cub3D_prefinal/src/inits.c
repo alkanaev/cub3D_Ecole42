@@ -10,26 +10,23 @@ static void init_player(t_all *all)
 }
 void init_screen_params(t_all *all)
 {
-	int max_s_width;
-	int max_s_height;
+	all->max_s_width= 360;
+	all->max_s_height = 240;
 	
-	max_s_width = 240;
-	max_s_height = 360;
-
-	mlx_get_screen_size(all->data.mlx, &max_s_width, &max_s_height);
-	if (all->map.s_width > max_s_width)
-		all->map.s_width = max_s_width;
-	if (all->map.s_height > max_s_height)
-		all->map.s_height = max_s_height;
+	mlx_get_screen_size(all->data.mlx, &all->max_s_width, &all->max_s_height);
+	if (all->map.s_width > all->max_s_width)
+		all->map.s_width = all->max_s_width;
+	if (all->map.s_height > all->max_s_height)
+		all->map.s_height = all->max_s_height;
 }
 
 void init_all(t_all *all)
 {
+	init_screen_params(all);
 	init_player(all);
 	init_textures(all);
 	init_slice_height(all);
 	init_offset(all);
 	init_ceiling(all);
 	init_sprites(all);
-	init_screen_params(all);
 }

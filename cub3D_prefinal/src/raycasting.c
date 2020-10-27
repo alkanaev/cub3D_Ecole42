@@ -6,6 +6,7 @@ and draw ceiling, wall and floor by slice
 void	cast_rays(t_all *all)
 {
 	all->pl.fov_start = all->map.dir + M_PI / 6;
+	get_sprite_positions(all);
 	int i = 0;
 	while (i < all->map.s_width)
 	{
