@@ -14,8 +14,8 @@ void get_player_position(t_all *all)
         {
             if (all->map.map[y][x] == 'N' || all->map.map[y][x] == 'S' || all->map.map[y][x] == 'E' || all->map.map[y][x] == 'W')
 	        {
-		        all->player.x = x * SCALE + 32;
-		        all->player.y = y * SCALE + 32;
+		        all->pl.x = x * SCALE + 32;
+		        all->pl.y = y * SCALE + 32;
 	        }
             if (all->map.map[y][x] == '2')
                 all->sprite_count++;
@@ -67,8 +67,8 @@ void get_sprite_positions(t_all *all)
             {
                 if (all->map.map[y][x] == '2')
                 {
-                    all->sprite[i].x = x * SCALE + 32;
-                    all->sprite[i].y = y * SCALE + 32;
+                    all->sp[i].x = x * SCALE + 32;
+                    all->sp[i].y = y * SCALE + 32;
                     i++;
                 }
                 x++; 

@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 
 HEADER = cub3d.h
 
@@ -9,16 +9,22 @@ SRCS =	parsing_cub_1.c \
 		check_ciphers_2.c \
 		parsing_convert_1.c \
 		parsing_convert_2.c \
-		errors.c \
-		inits.c \
+		calculate_walls.c \
+		draw_sprites.c \
 		drawing.c \
-		calculations.c \
+		get_positions.c \
+		get_texture_data.c \
+		init_array_params.c \
+		inits.c \
+		errors.c \
 		player_move.c \
 		raycasting.c \
-		get_positions.c \
 		screenshot.c \
+		shortest_dist.c \
+		sprites_calculations.c \
+		sprites_data.c \
+		wall_cross.c \
 		main.c \
-		sprites.c
 
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 

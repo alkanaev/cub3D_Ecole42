@@ -26,56 +26,59 @@
 
 typedef struct  s_map {
     
-	int     x;
-	int     y;
+	int x;
+	int y;
 	int		start_map;
 	int		end_map;
 	int		max_str;
 	int		height_map;
 	char	**map;
-	float	dir;
-	int		s_width;
-	int		s_height;
+	float		dir;
+	char	error;
 
-	int		el;
-	int		Fint;
-	int		Cint;
-    char	*Fhex;
-	char	*Chex;
-	int		max_columns;
-    int     max_rows;
-	int		red_f;
-	int		green_f;
-	int		blue_f;
-    int		red_c;
-	int		green_c;
-	int		blue_c;
+	int			s_width;
+	int			s_height;
+
+	int			el;
+	int			Fint;
+	int			Cint;
+    char		*Fhex;
+	char		*Chex;
+	int			max_columns;
+    int         max_rows;
+	int			red_f;
+	int			green_f;
+	int			blue_f;
+    int			red_c;
+	int			green_c;
+	int			blue_c;
     int     valid;
+    
 }               t_map;
 
 typedef struct  s_player {
-    float   x;
-    float   y;
-    float   dir;
-    float   angle; // angle between subsequent rays
-    float   fov_start;
-    float   dist_to_screen;
-    float   *slice_height; // потом сделать динамически
-    float   *ceiling;
+float x;
+float y;
+float dir;
+float angle; // angle between subsequent rays
+float fov_start;
+float dist_to_screen;
+float *slice_height; // потом сделать динамически
+float *ceiling;
 }               t_player;
 
 typedef struct  s_sprite {
-    float   x;
-    float   y;
-    float   dir; // угол между линией от игрока к спрайту и осью x.
-    float   delta; // относительный угол между направлением взгляда игрока и спрайтом 
-    float   dist; // расстояние между игроком и спрайтом
-    float   size; // размер спрайта
+    float x;
+    float y;
+    float dir; // угол между линией от игрока к спрайту и осью x.
+    float delta; // относительный угол между направлением взгляда игрока и спрайтом 
+    float dist; // расстояние между игроком и спрайтом
+    float size; // размер спрайта
     int     img_height;
-    float   h_offset; // координаты верхнего левого угла спрайта на экране
-    float   v_offset;  // координаты верхнего левого угла спрайта на экране
-    float   height;
-    float   width;
+    float     h_offset; // координаты верхнего левого угла спрайта на экране
+    float     v_offset;  // координаты верхнего левого угла спрайта на экране
+    float     height;
+    float     width;
 
 }               t_sprite;
 
@@ -88,48 +91,48 @@ typedef enum    e_hit_side
 }               t_hit_side;
 
 typedef   struct    s_cross {
-    float           hx;
-    float           hy;
-    float           vx;
-    float           vy;
-    float           h_dy; // смещение по y
-    float           h_dx; // смещение по x
-    float           v_dy; // cмещение по y
-    float           v_dx; // смещение по x
-    float           h_distance;
-    float           v_distance;
-    float           closest_cross;
-    float           right_distance;
-    float           wall_x;
-    float           wall_y;
-    float           *offset;
-    int             hit; // 1 - hit horizontally, 0 - hit vertically
+    float   hx;
+    float   hy;
+    float   vx;
+    float   vy;
+    float   h_dy; // смещение по y
+    float   h_dx; // смещение по x
+    float   v_dy; // cмещение по y
+    float   v_dx; // смещение по x
+    float   h_distance;
+    float   v_distance;
+    float   closest_cross;
+    float   right_distance;
+    float   wall_x;
+    float   wall_y;
+    float   *offset;
+    int     hit; // 1 - hit horizontally, 0 - hit vertically
     t_hit_side      hit_side;
 }                   t_cross;
 
 typedef struct s_data
 {
-    void    *img;
-    char    *addr;
-    int     bits_per_pixel;
-    int     line_length;
-    int     endian;
-    void    *mlx;
-    void    *mlx_win;
-    int     *addr_int;
+    void *img;
+    char *addr;
+    int bits_per_pixel;
+    int line_length;
+    int endian;
+    void *mlx;
+    void *mlx_win;
+    int *addr_int;
 
 }       t_data;
 
 typedef struct s_texture_data
 {
-   void     *img;
-   char     *relative_path;
-   int      img_width;
-   int      img_height;
-   int      line_length;
-   int      bits_per_pixel;
-   int      endian;
-   char     *addr;
+   void *img;
+   char  *relative_path;
+   int   img_width;
+   int   img_height;
+   int   line_length;
+   int   bits_per_pixel;
+   int   endian;
+   char  *addr;
 }             t_texture_data;
 
 typedef struct  s_sprite_img
@@ -147,24 +150,18 @@ typedef struct  s_sprite_img
 
 typedef struct  s_all
 {
-    t_data          data;
-    t_player        player;
-    t_map           map;
-    t_cross         cross;
-    t_texture_data  texture[4];
-    t_sprite_img    sprite_img;
-    t_sprite        *sprite;
-    int			    *sprite_order;
-	double		    *sprite_distance;
-    int			    sprite_count;
+    int     check;
+    t_data  data;
+    t_player pl;
+    t_map   map;
+    t_cross cross;
+    t_texture_data texture[4];
+    t_sprite_img sprite_img;
+    t_sprite    *sp;
+    int			*sprite_order;
+	double		*sprite_distance;
+    int			sprite_count;
 }               t_all;
-
-
-
-t_sprite    *init_sprites(t_all *all);
-void        draw_all_sprites(t_all *all, int i);
-void        get_sprite_positions(t_all *all);
-void        get_player_position(t_all *all);
 
 // functions for parsing
 int		    check_format(char *str, t_map *map, t_all *all);
@@ -209,31 +206,37 @@ int		    parser_map2(char *fichier, t_map *map, char *line, int i);
 void	    initialization_of_structures(t_map *map);
 
 // functions for graphics
-void        init_all(t_all *all);
-void        get_player_direction(t_all *all);
-void        my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void        draw_wall(t_all *all, int width);
-void        draw_player(t_all *all); 
-void        draw_map(t_all *all);
-void        draw_ray(t_all *all);
-void        draw_ceiling(t_all *all, int width);
-void        draw_floor(t_all *all, int width);
+void            my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void fix_angle(float *angle);
+void calculate_wall(t_all *all, int i);
+void 	horizontal_cross(t_all *all);
+void	vertical_cross(t_all *all);
+void find_wall(t_all *all);
+void shortest_distance(t_all *all, int i);
+void horizontal_hit(t_all *all);
+void vertical_hit(t_all *all);
+void shortest_distance(t_all *all, int i);
+void            draw_wall(t_all *all, int width);
+void draw_ceiling(t_all *all, int width);
+void draw_floor(t_all *all, int width);
+void get_player_position(t_all *all);
+void get_player_direction(t_all *all);
+void get_sprite_positions(t_all *all);
+void init_textures(t_all *all);
+void draw_all_sprites(t_all *all, int i);
+t_sprite *init_sprites(t_all *all);
+t_sprite   **sort_sprites(t_all *all);
+void get_sprite_image_data(t_all *all);
+float   compute_delta_angle(float fov_start, float sprite_dir);
+void	cast_rays(t_all *all);
+void init_all(t_all *all);
+int     render_next_frame(t_all *all);
+int control_player(int keycode, t_all *all);
+float *init_slice_height(t_all *all);
+float *init_ceiling(t_all *all);
+float *init_offset(t_all *all);
 
-void 	    horizontal_cross(t_all *all);
-void	    vertical_cross(t_all *all);
-void        horizontal_hit(t_all *all);
-void        vertical_hit(t_all *all);
-void        shortest_distance(t_all *all, int i);
-void        fix_angle(float *angle);
-void        calculate_wall(t_all *all, int i);
-void        find_wall(t_all *all);
-
-void        make_screenshot(t_all *all);
-int         control_player(int keycode, t_all *all);
-int         render_next_frame(t_all *all);
-void	    draw_ray(t_all *all);
-int		    ft_strcmp(char const *s1, char const *s2);
-void	    cast_rays(t_all *all);
+void                make_screenshot(t_all *all);
 
 
 #endif

@@ -1,13 +1,13 @@
 #include "../cub3d.h"
 
-void                int_to_char(unsigned char *c, int i)
+static void int_to_char(unsigned char *c, int i)
 {
     c[0] = (unsigned char)(i);
     c[1] = (unsigned char)(i >> 8);
     c[2] = (unsigned char)(i >> 16);
     c[3] = (unsigned char)(i >> 24);
 }
-int                 bmp_header(int fd, int h, int w, int padsize)
+static int                 bmp_header(int fd, int h, int w, int padsize)
 {
     unsigned char   header[54];
     int             filesize;
@@ -24,7 +24,7 @@ int                 bmp_header(int fd, int h, int w, int padsize)
     header[28] = (unsigned char)(24);
     return (!(write(fd, header, 54) < 0));
 }
-int                 bmp_data(int fd, t_all *all, int padsize)
+static int                 bmp_data(int fd, t_all *all, int padsize)
 {
     unsigned char   zero[3];
     int             x;
@@ -46,7 +46,7 @@ int                 bmp_data(int fd, t_all *all, int padsize)
     }
     return (1);
 }
-int                 take_screenshot(t_all *all)
+static int                 take_screenshot(t_all *all)
 {
     int             padsize;
     int             fd;
