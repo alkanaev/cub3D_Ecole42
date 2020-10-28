@@ -51,6 +51,7 @@ typedef struct  s_map {
     int			red_c;
 	int			green_c;
 	int			blue_c;
+    int         flag;
     int     valid;
     int     rok;
     int  tok;
@@ -170,7 +171,9 @@ int		    check_format(char *str, t_map *map, t_all *all);
 int		    rosol_converting(const char *str, t_map *map);
 void	    floor_check(char *str, t_map *map, int k, int i);
 int		    len_mod(char *str);
-void        chipher_rfc_valid(char *str, t_map *map);
+void	    chipher_f_valid(char *str, t_map *map);
+void	    chipher_rc_valid(char *str, t_map *map);
+// void        chipher_rfc_valid(char *str, t_map *map);
 void	    chipher_sides_valid(char *str, t_all *all);
 void	    texture_reader2(char *str, char *texture, int i, int j);
 char	    *texture_reader(char *str, t_all *all);

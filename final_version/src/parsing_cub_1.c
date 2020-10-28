@@ -63,13 +63,27 @@ int		parser_map(char *fichier, t_map *map, t_all *all)
 	while ((r = get_next_line(fd, &line)) > 0)
 	{
 		ft_parser(map, line, i);
-		chipher_rfc_valid(line, map);
-		if (map->valid == 1)
+		if (map->flag == 0)
+			chipher_f_valid(line, map);
+		// printf("VALID OR NOT VALID FLAG: %d\n", map->valid);
+		// printf("YOUR FLAG IS: %d\n", map->flag);
+		else if (/*map->valid == 1 && */map->flag > 0 && map->flag < 6)
+		{
 			chipher_sides_valid(line, all);
-		cnt_map(line, map);
+			printf("YOUR FLAG IS: %d\n", map->flag);
+		}
+		else if (map->flag == 6 || map->flag == 7)
+			chipher_rc_valid(line, map);
+		else if (map->flag == 8)
+			cnt_map(line, map);
 		i++;
 		free(line);
 		line = NULL;
+		// else
+		// {
+		// 	ft_putstr("There was a mistake in params or in a map\n");
+		// }
+		
 	}
 	// printf("TOK %d", map->tok);
 	map->end_map = i;

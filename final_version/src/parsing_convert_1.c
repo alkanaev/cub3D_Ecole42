@@ -65,8 +65,11 @@ int		f_converting(char *str, t_map *map)
 	colours = get_colours_codes(prep_line);
 	k = 1;
 	floor_ceiling_work(str, map, colours, res, k);
-	if (map->valid == 1)
-		feedback(str, "colours ok\n");
+	// if (map->valid == 1)
+	// {
+	// 	// map->flag += 1;
+	// 	feedback(str, "colours ok\n");
+	// }
 	return (0);
 }
 
@@ -91,6 +94,9 @@ int		c_converting(char *str, t_map *map)
 	k = 2;
 	floor_ceiling_work(str, map, colours, res, k);
 	if (map->valid == 1)
+	{
+		//map->flag += 1;
 		feedback(str, "colours ok\n");
+	}
 	return (0);
 }
