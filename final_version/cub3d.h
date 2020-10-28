@@ -62,8 +62,8 @@ float y;
 float dir;
 float angle; // angle between subsequent rays
 float fov_start;
-float dist_to_screen;
-float *slice_height; // потом сделать динамически
+float dist;
+float *wall_size; // потом сделать динамически
 float *ceiling;
 }               t_player;
 
@@ -75,8 +75,8 @@ typedef struct  s_sprite {
     float dist; // расстояние между игроком и спрайтом
     float size; // размер спрайта
     int     img_height;
-    float     h_offset; // координаты верхнего левого угла спрайта на экране
-    float     v_offset;  // координаты верхнего левого угла спрайта на экране
+    float     h_of; // координаты верхнего левого угла спрайта на экране
+    float     v_of;  // координаты верхнего левого угла спрайта на экране
     float     height;
     float     width;
 
@@ -102,7 +102,7 @@ typedef   struct    s_cross {
     float   h_distance;
     float   v_distance;
     float   closest_cross;
-    float   right_distance;
+    float   right_dist;
     float   wall_x;
     float   wall_y;
     float   *offset;
