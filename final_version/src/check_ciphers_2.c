@@ -66,17 +66,25 @@ void floor_check(char *str, t_map *map, int k, int i)
 		// 	map->valid = 0;
 		// 	feedback(str, " -  double resol\n\n");
 		// }
-		map->s_width = rosol_converting(str, map);
-		map->s_height = rosol_converting(str, map);
-		if ((map->s_width > 0) && (map->s_height > 0))
-			feedback(str, " -  Resol ok\n\n");
-		else
-		{
-			feedback(str, " -  Resol error\n");
-			map->valid = 0;
-		}
+		// else
+		// {
+			map->s_width = rosol_converting(str, map);
+			map->s_height = rosol_converting(str, map);
+			
+			if ((map->s_width > 0) && (map->s_height > 0))
+			{
+				map->rok = 1;
+				feedback(str, " -  Resol ok\n\n");
+			}
+			else
+			{
+				feedback(str, " -  Resol error\n");
+				map->valid = 0;
+			}
+		// }
 	}
 }
+
 
 void	chipher_rfc_valid(char *str, t_map *map)
 {
@@ -89,16 +97,30 @@ void	chipher_rfc_valid(char *str, t_map *map)
 	while (str[i])
 	{
 		if (str[i] == 'R' && str[i + 1] == ' ')
-			floor_check(str, map, k, i);
-		if (str[i] == 'F')
 		{
-			if (f_converting(str, map) == 0)
-				map->Fint = convert_colours(map->red_f, map->green_f, map->blue_f);
+			//printf("CHECK %d\n", map->s_width);
+			//printf("CHECK2 %d", map->s_height);
+			if (map->s_width == 0 || map->s_height == 0)
+				floor_check(str, map, k, i);
+			//if (map->s_width != 0 || map->s_height != 0)
+			else
+			{
+				map->valid = 0;
+				feedback(str, " -  double resol\n\n");
+			}
 		}
-		if (str[i] == 'C')
+		if (map->valid == 1)
 		{
-			if (c_converting(str, map) == 0)
-				map->Cint = convert_colours(map->red_c, map->green_c, map->blue_c);
+			if (str[i] == 'F')
+			{
+				if (f_converting(str, map) == 0)
+					map->Fint = convert_colours(map->red_f, map->green_f, map->blue_f);
+			}
+			if (str[i] == 'C')
+			{
+				if (c_converting(str, map) == 0)
+					map->Cint = convert_colours(map->red_c, map->green_c, map->blue_c);
+			}
 		}
 		i++;
 	}

@@ -61,6 +61,10 @@ void	main_init(t_all *all)
 	all->texture[east].relative_path = NULL;
 	all->sprite_img.spr = NULL;
 	all->map.valid = 1;
+	all->map.s_width = 0;
+	all->map.s_height = 0;
+	all->map.rok = 0;
+	all->map.tok = 0;
 }
 
 void	initialization_of_structures(t_map *map)

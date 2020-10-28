@@ -48,6 +48,7 @@ void	cnt_map(char *str, t_map *map) // подсчет карты
 	map->max_rows = max_rows;
 }
 
+
 int		parser_map(char *fichier, t_map *map, t_all *all)
 {
 	int		r;
@@ -58,16 +59,19 @@ int		parser_map(char *fichier, t_map *map, t_all *all)
 	i = 0;
 	line = NULL;
 	fd = open(fichier, O_RDONLY);
+
 	while ((r = get_next_line(fd, &line)) > 0)
 	{
 		ft_parser(map, line, i);
 		chipher_rfc_valid(line, map);
-		chipher_sides_valid(line, all);
+		if (map->valid == 1)
+			chipher_sides_valid(line, all);
 		cnt_map(line, map);
 		i++;
 		free(line);
 		line = NULL;
 	}
+	// printf("TOK %d", map->tok);
 	map->end_map = i;
 	close(fd);
 	launch_pm2(fichier, map, all, line);
@@ -90,7 +94,9 @@ int		check_format(char *str, t_map *map, t_all *all)
 		}
 	}
 	if (str[i + 1] == 'c' && str[i + 2] == 'u' && str[i + 3] == 'b')
-		parser_map(str, map, all);
+	{
+			parser_map(str, map, all);
+	}
 	else
 	{
 		feedback(str, " -  not a cub file\n");

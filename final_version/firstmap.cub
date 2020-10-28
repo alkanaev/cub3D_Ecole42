@@ -1,12 +1,11 @@
 R 800 600
-R 800 600
 
 NO ./xpm/north_wall.xpm
 WE ./xpm/west_wall.xpm
 SO ./xpm/south_wall.xpm
 EA ./xpm/east_wall.xpm
-S ./xpm/sprite.xpm
 
+S ./xpm/sprite.xpm
 C 255,0,1
 F 255,182,193 
 

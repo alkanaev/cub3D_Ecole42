@@ -24,6 +24,7 @@
 # define RIGHT 124
 # define SCALE 64
 
+
 typedef struct  s_map {
     
 	int x;
@@ -42,8 +43,6 @@ typedef struct  s_map {
 	int			el;
 	int			Fint;
 	int			Cint;
-    char		*Fhex;
-	char		*Chex;
 	int			max_columns;
     int         max_rows;
 	int			red_f;
@@ -53,7 +52,8 @@ typedef struct  s_map {
 	int			green_c;
 	int			blue_c;
     int     valid;
-    
+    int     rok;
+    int  tok;
 }               t_map;
 
 typedef struct  s_player {
@@ -240,6 +240,7 @@ float *init_offset(t_all *all);
 void init_screen_params(t_all *all);
 
 void                make_screenshot(t_all *all);
+
 
 
 #endif
