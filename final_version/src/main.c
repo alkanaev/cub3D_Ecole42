@@ -65,7 +65,6 @@ void	main_init(t_all *all)
 	all->map.s_height = 0;
 	all->map.rok = 0;
 	all->map.tok = 0;
-	all->map.flag = 0;
 }
 
 void	initialization_of_structures(t_map *map)
@@ -86,12 +85,12 @@ int		main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		check_format(argv[1], &(all.map), &all);
-		if (all.map.valid == 1)
+		if (all.map.valid == 1 && all.map.tok == 8)
 			mlx_launch(&all);
 	}
 	if (argc == 3 && ft_strcmp(argv[2], "--save") == 0)
 		save_bmp(&all);
-	else if (argc == 2 && all.map.valid == 1)
+	else if (argc == 2 && all.map.valid == 1  && all.map.tok == 8)
 		launch_cub(&all);
 	//if (argc < 2 || argc > 3 || all.map.valid == 0)
 	else

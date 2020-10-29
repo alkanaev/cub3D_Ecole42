@@ -51,7 +51,6 @@ typedef struct  s_map {
     int			red_c;
 	int			green_c;
 	int			blue_c;
-    int         flag;
     int     valid;
     int     rok;
     int  tok;
@@ -63,8 +62,8 @@ float y;
 float dir;
 float angle; // angle between subsequent rays
 float fov_start;
-float dist;
-float *wall_size; // потом сделать динамически
+float dist_to_screen;
+float *slice_height; // потом сделать динамически
 float *ceiling;
 }               t_player;
 
@@ -76,8 +75,8 @@ typedef struct  s_sprite {
     float dist; // расстояние между игроком и спрайтом
     float size; // размер спрайта
     int     img_height;
-    float     h_of; // координаты верхнего левого угла спрайта на экране
-    float     v_of;  // координаты верхнего левого угла спрайта на экране
+    float     h_offset; // координаты верхнего левого угла спрайта на экране
+    float     v_offset;  // координаты верхнего левого угла спрайта на экране
     float     height;
     float     width;
 
@@ -103,7 +102,7 @@ typedef   struct    s_cross {
     float   h_distance;
     float   v_distance;
     float   closest_cross;
-    float   right_dist;
+    float   right_distance;
     float   wall_x;
     float   wall_y;
     float   *offset;
@@ -171,9 +170,7 @@ int		    check_format(char *str, t_map *map, t_all *all);
 int		    rosol_converting(const char *str, t_map *map);
 void	    floor_check(char *str, t_map *map, int k, int i);
 int		    len_mod(char *str);
-void	    chipher_f_valid(char *str, t_map *map);
-void	    chipher_rc_valid(char *str, t_map *map);
-// void        chipher_rfc_valid(char *str, t_map *map);
+void        chipher_rfc_valid(char *str, t_map *map);
 void	    chipher_sides_valid(char *str, t_all *all);
 void	    texture_reader2(char *str, char *texture, int i, int j);
 char	    *texture_reader(char *str, t_all *all);
@@ -245,5 +242,7 @@ void init_screen_params(t_all *all);
 void                make_screenshot(t_all *all);
 
 
+int			ft_check_extension(char *file_name, char *valid_ext);
+int		ft_strcmp(char const *s1, char const *s2);
 
 #endif

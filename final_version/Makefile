@@ -25,7 +25,7 @@ SRCS =	parsing_cub_1.c \
 		sprites_data.c \
 		wall_cross.c \
 		main.c \
-
+		
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 
 OBJ_DIR = obj
